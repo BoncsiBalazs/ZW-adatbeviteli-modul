@@ -748,3 +748,34 @@ input.is-invalid, select.is-invalid, textarea.is-invalid {
 .v5-component-scale-details{border:1px solid #d7e6e2;border-radius:10px;margin:15px 0 0}
 .v5-component-scale-details>summary{cursor:pointer;background:#f5faf8;color:#17685d;font-weight:750;padding:12px 14px;border-radius:10px}
 .v5-component-scale-details .v5-scales{margin:7px 0}
+
+/* 5.1 – választható komponensértékelés */
+.v5-component-prompt{margin-top:26px;padding:20px;border:1px solid #cbded8;border-radius:14px;background:#f7fbfa}
+.v5-component-prompt h3{margin:0 0 14px;font-size:1.09rem;color:#174e49}
+.v5-component-choice{display:flex;gap:10px}
+.v5-choice{border:1px solid #8faea5;border-radius:10px;min-width:115px;min-height:46px;padding:10px 18px;background:white;color:#174b44;font-weight:700;cursor:pointer}
+.v5-choice.selected{background:#0f766e;color:white;border-color:#0f766e}
+.v5-choice:focus-visible{outline:3px solid rgba(15,118,110,.4);outline-offset:2px}
+.v5-choice-note{margin:11px 0 0;color:#526c65;font-size:.88rem}
+.v5-component-editor{margin-top:8px}
+@media(max-width:440px){.v5-component-choice .v5-choice{flex:1;min-width:0}}
+
+/* 5.2 – teljes szöveges JAR-válaszok; mobilon egy oszlopban */
+.v5-jar-buttons{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:6px}
+.v5-jar-buttons .v5-rate{white-space:normal;overflow-wrap:break-word;font-size:.78rem;font-weight:650;line-height:1.25;min-height:66px;padding:8px 5px}
+@media(max-width:620px){.v5-jar-buttons{grid-template-columns:1fr;gap:5px}.v5-jar-buttons .v5-rate{text-align:left;min-height:44px;padding:9px 12px;font-size:.88rem}}
+
+/* 5.3 – a kitöltői felület egyszerűsítése */
+.conversion-box:empty { display: none; }
+.cata-reco-count { display: none; }
+.cata-context { padding: 8px 12px; margin-bottom: 12px; background: #f8fbfa; border-color: #d7e5e0; }
+.cata-group-details { margin-top: 0; padding-top: 0; border-top: 0; }
+.cata-group-summary { margin: 0 0 5px; }
+.extra-exports { margin-top: 16px; border-top: 1px solid #dde8e3; padding-top: 12px; }
+.extra-exports summary { cursor: pointer; color: #17685d; font-weight: 650; }
+.extra-exports .button-stack { margin-top: 12px; }
+.extra-exports p { margin: 10px 0; }
+
+.v5-meal-scale-details { border: 1px solid #d7e6e2; border-radius: 12px; padding: 11px 13px; margin: 19px 0 12px; background: #f9fcfb; }
+.v5-meal-scale-details > summary { font-weight: 700; color: #17685d; cursor: pointer; }
+.v5-meal-scale-details > .v5-scales { margin-bottom: 0; }

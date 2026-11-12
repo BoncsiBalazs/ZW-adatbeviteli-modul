@@ -2,7 +2,7 @@
 "use strict";
 
 const DATA = window.ZW_DATA;
-const APP_VERSION = "5.0.0-anon";
+const APP_VERSION = "5.3.0-anon";
 const SENSORY_LIST_VERSION = "cata-pilot-2026-11-v3-group-recommended"; // Változatlan, régi eredményekkel összehasonlítható
 const DB_NAME = "zerowaste-entry-public-anon-v4";
 const DB_VERSION = 1;
@@ -21,9 +21,9 @@ const ATTRS = [
 const stepTitles = [
   "1. Alapadatok",
   "2. Leves – mérés",
-  "3. Leves – érzékszervi",
+  "3. Leves – minősítés",
   "4. Második fogás – mérés",
-  "5. Második fogás – érzékszervi",
+  "5. Második fogás – minősítés",
   "6. Ellenőrzés"
 ];
 
@@ -329,7 +329,7 @@ function setCataDish(prefix, { silent = false } = {}) {
   ctx.manuallyEdited = false;
   // Az előző ételre rögzített pontszámok és hibák nem vihetők át az új fogásra.
   renderSensory(prefix, prefix === "soup" ? "soupSensory" : "mainSensory");
-  if (hadRating && !silent) showToast("Az étel neve megváltozott: a korábbi érzékszervi pontszámokat és jellemzőket töröltük.", 5200);
+  if (hadRating && !silent) showToast("Új ételt választott. A korábbi értékelést töröltük.", 5200);
 }
 
 function cataRecommended(prefix, attr, score) {
@@ -360,12 +360,9 @@ function renderSensory(prefix, containerId) {
   const controls = document.createElement("div");
   controls.className = "cata-context";
   controls.innerHTML = `
-    <div class="cata-context-title">CATA – ételcsoport-specifikus ajánlások</div>
-    <div class="cata-selected-dish"><strong>Étel:</strong> ${escapeHtml(ctx.dish || "Még nincs kiválasztva")}</div>
     <div class="cata-group-summary" aria-live="polite"></div>
     <details class="cata-group-details" ${(!knownDish || needsReview) ? "open" : ""}>
-      <summary>Ételcsoportok ellenőrzése / módosítása</summary>
-      <p class="cata-explainer">Több csoportot is megjelölhet (például rántott hús és burgonyaköret). A besorolás csak az ajánlott jellemzőket módosítja; a teljes lista minden esetben kereshető.</p>
+      <summary>Ételcsoport módosítása</summary>
       <div class="cata-group-choices"></div>
     </details>
   `;
@@ -380,11 +377,13 @@ function renderSensory(prefix, containerId) {
 
   function refreshGroupSummary() {
     const label = ctx.groups.map(k => groups.find(g => g.id === k)?.label || k).join(" · ");
-    const note = !ctx.dish ? "Először adja meg az étel nevét." : !ctx.groups.length ?
-      "Nincs kiválasztott csoport: általános jellemzők jelennek meg. Kérjük, ellenőrizze a besorolást." :
-      (needsReview && !ctx.manuallyEdited ? "Előzetes besorolás – receptúra alapján ellenőrizendő. " : "") +
-      (ctx.manuallyEdited ? "Kézzel módosított: " : "Ajánlott csoportok: ") + label;
-    qs(".cata-group-summary", controls).textContent = note;
+    const note = !ctx.dish ? "" : !ctx.groups.length ?
+      "Válasszon ételcsoportot." :
+      (needsReview && !ctx.manuallyEdited ? "Ellenőrizze az ételcsoportot: " : "") +
+      (ctx.manuallyEdited ? "Kiválasztva: " : "") + (needsReview || ctx.manuallyEdited ? label : "");
+    const summary = qs(".cata-group-summary", controls);
+    summary.textContent = note;
+    summary.classList.toggle("hidden", !note);
   }
   refreshGroupSummary();
   qsa(".cata-group-choice input", controls).forEach(input => {
@@ -410,7 +409,7 @@ function renderSensory(prefix, containerId) {
         <div class="score-row" aria-label="${label} pontszám">
           ${[1,2,3,4,5].map(n => `<button class="score-btn" data-score="${n}" type="button">${n}</button>`).join("")}
         </div>
-        <div class="sensory-rule-note">Összkedveltség: 1 = egyáltalán nem kedvelt; 5 = nagyon kedvelt. Ennél a kérdésnél nem szükséges CATA-tulajdonság.</div>
+        <div class="sensory-rule-note">1 = egyáltalán nem kedvelt, 5 = nagyon kedvelt.</div>
       `;
       container.appendChild(card);
       qsa(".score-btn", card).forEach(btn => btn.addEventListener("click", () => {
@@ -427,18 +426,17 @@ function renderSensory(prefix, containerId) {
       <div class="score-row" aria-label="${label} pontszám">
         ${[1,2,3,4,5].map(n => `<button class="score-btn" data-score="${n}" type="button">${n}</button>`).join("")}
       </div>
-      <div class="sensory-rule-note">Először adjon pontszámot. Az ajánlott jellemzők az ételcsoport szerint változnak. 5 pontnál a „Megfelelő” válasz is használható.</div>
-      <div class="descriptor-required-label">CATA-tulajdonság(ok) <b>*</b> <span>– jelölje az összes jellemzőt</span></div>
+      <div class="descriptor-required-label">Jellemzők <b>*</b></div>
       <div class="cata-recommended">
-        <div class="cata-options-label">Ételhez ajánlott jellemzők <span class="cata-reco-count"></span></div>
+        <div class="cata-options-label">Ajánlott jellemzők <span class="cata-reco-count"></span></div>
         <div class="cata-reco-buttons" aria-label="Ajánlott ${label} tulajdonságok"></div>
       </div>
       <details class="cata-full-list">
-        <summary>Teljes tulajdonságlista keresése</summary>
-        <label class="cata-search-label" for="${prefix}-${key}-search">Keresés az összes ${escapeHtml(label.toLocaleLowerCase("hu"))} jellemzőben</label>
-        <input id="${prefix}-${key}-search" class="descriptor-input" type="search" placeholder="Kezdje el begépelni a jellemzőt…" autocomplete="off">
+        <summary>További jellemzők</summary>
+        <label class="cata-search-label" for="${prefix}-${key}-search">Keresés</label>
+        <input id="${prefix}-${key}-search" class="descriptor-input" type="search" placeholder="Jellemző keresése" autocomplete="off">
         <div class="cata-search-count" aria-live="polite"></div>
-        <div class="cata-all-options" aria-label="Teljes CATA-lista találatai"></div>
+        <div class="cata-all-options" aria-label="Találatok"></div>
       </details>
       <div class="chips" aria-live="polite"></div>
       <button class="secondary-btn small add-other-btn" type="button">Egyéb tulajdonság</button>
@@ -487,7 +485,7 @@ function renderSensory(prefix, containerId) {
       const options = cataRecommended(prefix, label, st.score).filter(d => !st.descriptors.includes(d));
       recommended.innerHTML = options.length
         ? options.map(d => `<button type="button" class="cata-choice" data-descriptor="${escapeHtml(d)}">${escapeHtml(d)}</button>`).join("")
-        : `<span class="small-muted">Nincs további ajánlott jellemző. A teljes lista továbbra is kereshető.</span>`;
+        : `<span class="small-muted">Nincs több ajánlás.</span>`;
       qs(".cata-reco-count", card).textContent = `(${options.length})`;
       qsa(".cata-choice", recommended).forEach(btn => btn.addEventListener("click", () => chooseDescriptor(btn.dataset.descriptor)));
     }
@@ -496,10 +494,10 @@ function renderSensory(prefix, containerId) {
       const term = cataFold(searchInput.value);
       const all = descriptorOptions(prefix, label, st.score);
       const matches = all.filter(d => !st.descriptors.includes(d) && cataFold(d).includes(term));
-      qs(".cata-search-count", card).textContent = `${matches.length} találat a ${all.length} elérhető jellemzőből`;
+      qs(".cata-search-count", card).textContent = `${matches.length} találat`;
       fullList.innerHTML = matches.length
         ? matches.map(d => `<button type="button" class="cata-choice cata-choice-secondary" data-descriptor="${escapeHtml(d)}">${escapeHtml(d)}</button>`).join("")
-        : `<span class="small-muted">Nincs találat. Próbálja más kifejezéssel, vagy adjon meg egyéb tulajdonságot.</span>`;
+        : `<span class="small-muted">Nincs találat.</span>`;
       qsa(".cata-choice", fullList).forEach(btn => btn.addEventListener("click", () => chooseDescriptor(btn.dataset.descriptor)));
     }
 
@@ -568,7 +566,7 @@ function sensoryFlat(prefix) {
   return out;
 }
 
-/* ZeroWaste Entry 5.0 – egyetlen részletes érzékszervi folyamat.
+/* ZeroWaste Entry 5.2 – pontosított komponensajánlás és JAR-skála.
  * Visszamenőleg kompatibilis: a korábbi ételszintű pontok és CATA-mezők változatlanok.
  * A komponensek, választható JAR és 4 alapíz-intenzitás külön exporttáblákba kerülnek.
  */
@@ -593,42 +591,60 @@ function v5DishIncludes(name, tokens) {
 }
 function v5SuggestedComponents(prefix) {
   const ctx = cataContext[prefix];
-  const name = ctx.dish || "";
+  const course = courseForPrefix(prefix);
+  const canonical = Object.keys(SENSORY_V5.dishComponentProfiles?.[course] || {})
+    .find(name => cataFold(name) === cataFold(ctx.dish));
+  // A kézzel megadott ételcsoport-beállítás felülírhatja a törzsbeli ajánlást.
+  if (canonical && !ctx.manuallyEdited) {
+    const rows = SENSORY_V5.dishComponentProfiles[course][canonical];
+    return rows.map(row => v5NewComponent(row.name, row.kind));
+  }
   const gs = new Set(ctx.groups);
-  const result = [];
-  const add = (label, kind) => { if (!result.some(x => x.kind === kind && x.name === label)) result.push({name:label,kind}); };
+  const name = ctx.dish || "";
   const has = tokens => v5DishIncludes(name,tokens);
+  const suggestions = [];
+  const add = (label, kind) => {
+    if (!suggestions.some(s => s.kind === kind && s.name === label)) suggestions.push({name:label,kind});
+  };
+  // Új ételek: csak egyértelmű névelemekből következtetünk; a kezelő javíthatja.
+  const isFish = has(["hal", "harcsa"]);
+  const isBreaded = has(["rántott", "orly", "bundázott"]);
+  const isPaprikas = has(["paprikás", "pörkölt", "tokány"]);
+  const sidePasta = has(["galuska", "tészt", "spagetti", "metélt"]);
+  const sidePotatoSalad = has(["burgonyasalát"]);
+  const sidePotato = !sidePotatoSalad && has(["burgonya", "krumpli", "püré"]);
+  const sideGrain = has(["rizs", "bulgur", "tarhonya"]);
   if (prefix === "soup") {
-    if (gs.has("CREAM_SOUP")) add("Krémleves", "cream_soup");
+    if (gs.has("CREAM_SOUP") || has(["krémleves"])) add("Krémleves", "cream_soup");
     else if (gs.has("FRUIT_SOUP")) { add("Gyümölcsleves leve", "fruit_liquid"); add("Gyümölcsdarabok", "vegetables"); }
     else add("Leveslé", "soup_liquid");
-    if (has(["cérnamet", "galuska", "gombóc", "csipetke", "tészta", "lebbenc", "betét", "tarhonya", "kocka"])) add("Levesbetét", "soup_insert");
-    if (gs.has("HEARTY_SOUP") || has(["zöldség", "gulyás", "bab", "lencse"])) add("Zöldség / hüvelyes / betét", "vegetables");
-    if (has(["hús", "csirke", "marha", "sertés", "ragu", "pulyka"])) add("Húsdarabok", "meat");
-    if (has(["pirított kenyér", "kruton"])) add("Levesbetét", "soup_insert");
+    if (has(["galuska","gombóc","csipetke","cérnamet","tarhonya","tészta","lebbenc","eperlevél"])) add("Levesbetét", "soup_insert");
+    if (has(["kenyérkock","pirított kocka"])) add("Pirított kenyérkocka", "croutons");
   } else if (gs.has("VEGETABLE_STEW") || gs.has("LEGUME_DISH") || has(["főzelék"])) {
     add("Főzelék", "stew");
-    if (has(["vagdalt", "fasírt", "virsli", "pörkölt", "feltét", "sertés", "hús", "csirke", "tojás"])) add("Feltét", "meat");
-  } else if (gs.has("SWEET_MAIN") || gs.has("DAIRY_CEREAL") || cataFold(name) === "nudli" || has(["gőzgombóc", "tejberizs", "mákos guba", "grízes metélt"])) {
+    if (has(["pörkölt","vagdalt","fasírt","hús","sült","nuggets"])) add("Hús / feltét", "meat");
+    if (has(["virsli","kolbász"])) add("Virsli / kolbász", "sausage");
+  } else if (gs.has("SWEET_MAIN") || gs.has("DAIRY_CEREAL") || has(["gőzgombóc", "nudli", "mákos guba", "tejberizs", "lekváros", "grízes metélt"])) {
     add("Édes főétel", "sweet");
-    if (has(["sodó", "öntet", "szórat", "mák", "dió", "cukor", "lekvár"])) add("Öntet / szórat", "topping");
-  } else if (gs.has("MIXED_SAVORY") || has(["rakott"])) {
-    add("Egytálétel / rakott étel", "main");
-    if (gs.has("SAUCE") || has(["mártás", "szaft"])) add("Mártás / szaft", "sauce");
-  } else {
-    if (gs.has("FISH")) add("Hal", "fish");
-    else if (gs.has("FRIED_MEAT") || gs.has("ROAST_MEAT") || gs.has("MEAT_STEW") || has(["csirke", "hús", "sertés", "pulyka", "vagdalt", "fasírt"])) add("Hús / főkomponens", "meat");
+    if (has(["öntet","sodó","lekvár"])) add("Öntet / feltét", "topping");
+  } else if (gs.has("MIXED_SAVORY") || has(["rakott", "rizseshús", "tarhonyás hús"])) add("Egytálétel", "main");
+  else {
+    if (gs.has("FISH") || isFish) add("Hal", "fish");
+    else if (gs.has("FRIED_MEAT") || gs.has("ROAST_MEAT") || gs.has("MEAT_STEW") || has(["csirke", "sertés", "pulyka", "fasírt", "vagdalt", "húsgombóc"])) add("Hús / főkomponens", "meat");
+    else if (gs.has("PASTA_SAVORY") || has(["bolognai"])) add("Tészta / galuska", "pasta");
     else add("Főkomponens", "main");
-    if (gs.has("FRIED_MEAT")) add("Panír / bunda", "coating");
-    if (gs.has("POTATO_SIDE") || has(["burgonya", "krumpli", "püré"])) add("Burgonyaköret", "potato");
-    else if (gs.has("GRAIN_SIDE") || has(["rizs", "bulgur", "tarhonya"])) add("Rizs / gabonaköret", "rice");
-    else if (gs.has("PASTA_SAVORY") || has(["galuska", "tészta", "spagetti", "metélt"])) add("Tészta / galuska", "pasta");
-    if (gs.has("SAUCE") || has(["mártás", "szaft", "paprikás", "pörkölt", "tokány"])) add("Mártás / szaft", "sauce");
+    if (gs.has("FRIED_MEAT") || isBreaded) add("Panír / bunda", "coating");
+    if (gs.has("SAUCE") || isPaprikas || has(["mártás", "szaft", "bolognai"])) add("Mártás / szaft", "sauce");
+    if (sidePotatoSalad) add("Burgonyasaláta", "potato_salad");
+    else if (gs.has("POTATO_SIDE") || sidePotato) add("Burgonyaköret", "potato");
+    if (gs.has("GRAIN_SIDE") || sideGrain) add("Rizs / gabonaköret", "rice");
+    if ((gs.has("PASTA_SAVORY") && (gs.has("MEAT_STEW") || gs.has("ROAST_MEAT"))) || (sidePasta && (isPaprikas || isFish || has(["csirke", "sertés", "pulyka"])))) add("Tésztaköret", "pasta");
   }
-  return (result.length ? result : [{name:"Főkomponens",kind:"main"}]).slice(0,5).map(x => v5NewComponent(x.name,x.kind));
+  return (suggestions.length ? suggestions : [{name:"Ételkomponens",kind:"main"}])
+    .slice(0,5).map(row => v5NewComponent(row.name,row.kind));
 }
 function v5Init(prefix) {
-  v5State[prefix] = { meal:v5BlankScales(), components:v5SuggestedComponents(prefix), componentsEdited:false };
+  v5State[prefix] = { meal:v5BlankScales(), componentEvaluation:null, components:[], componentsEdited:false };
 }
 function v5HasComponentData(prefix) {
   return (v5State[prefix]?.components || []).some(comp =>
@@ -638,7 +654,7 @@ function v5HasComponentData(prefix) {
 }
 function v5AfterGroupChange(prefix) {
   if (!v5State[prefix]) return;
-  if (!v5State[prefix].componentsEdited && !v5HasComponentData(prefix)) {
+  if (v5State[prefix].componentEvaluation === "yes" && !v5State[prefix].componentsEdited && !v5HasComponentData(prefix)) {
     v5State[prefix].components = v5SuggestedComponents(prefix);
     v5RenderComponents(prefix);
   }
@@ -661,21 +677,20 @@ function v5ScaleRows(prefix, parent, scope, label, kind = null) {
   function redraw() {
     const jarOptions = v5JarOptions(kind).filter(x => !Object.hasOwn(scope.jar,x.id));
     container.innerHTML = `
-      <h4>JAR – Ön által kiválasztott jellemzők</h4>
-      <p class="v5-help">Csak olyan tulajdonságot adjon hozzá, amelynél az optimális szintet vizsgálni szeretné. 3 = éppen megfelelő.</p>
-      <div class="v5-add-jar"><select class="v5-jar-select" aria-label="JAR-jellemző választása"><option value="">Válasszon JAR-jellemzőt…</option>${jarOptions.map(x=>`<option value="${x.id}">${escapeHtml(x.label)}</option>`).join("")}</select><button type="button" class="secondary-btn v5-jar-add">Hozzáad</button></div>
+      <h4>Jellemzők megítélése</h4>
+      <div class="v5-add-jar"><select class="v5-jar-select" aria-label="Jellemző választása"><option value="">Válasszon jellemzőt…</option>${jarOptions.map(x=>`<option value="${x.id}">${escapeHtml(x.label)}</option>`).join("")}</select><button type="button" class="secondary-btn v5-jar-add">Hozzáad</button></div>
       <div class="v5-jar-list">${Object.entries(scope.jar).map(([key,score]) => {
         const p=SENSORY_V5.jarProperties.find(x=>x.id===key);
         if(!p) return "";
-        return `<div class="v5-jar-item"><div class="v5-jar-heading"><strong>${escapeHtml(p.label)}</strong><button class="v5-remove" type="button" data-jar-remove="${key}">Eltávolítás</button></div><div class="v5-rating-row v5-jar-buttons" role="group" aria-label="${escapeHtml(p.label)} JAR">${[1,2,3,4,5].map((n)=>`<button type="button" class="v5-rate ${score===n?'selected':''}" data-jar-key="${key}" data-jar-value="${n}" title="${n===1?p.low:n===3?'Éppen megfelelő':n===5?p.high:n===2?'Kissé alacsony':'Kissé magas'}">${n}</button>`).join("")}</div><div class="v5-jar-ends"><span>${escapeHtml(p.low)}</span><strong>Éppen megfelelő</strong><span>${escapeHtml(p.high)}</span></div></div>`;
+        return `<div class="v5-jar-item"><div class="v5-jar-heading"><strong>${escapeHtml(p.label)}</strong><button class="v5-remove" type="button" data-jar-remove="${key}">Eltávolítás</button></div><div class="v5-rating-row v5-jar-buttons" role="group" aria-label="${escapeHtml(p.label)} értékelése">${SENSORY_V5.jarScaleLabels.map((answer,i)=>`<button type="button" class="v5-rate ${score===i+1?'selected':''}" aria-pressed="${score===i+1}" aria-label="${escapeHtml(p.label)}: ${escapeHtml(answer)}" data-jar-key="${key}" data-jar-value="${i+1}">${escapeHtml(answer)}</button>`).join("")}</div></div>`;
       }).join("")}</div>
-      <h4>Alapízek intenzitása (0–5)</h4>
-      <p class="v5-help">Csak a négy alapíz: édes, sós, savanyú és keserű. Az üres érték = nem vizsgált; a 0 = megvizsgált, de nem érzékelhető. Umami nincs.</p>
+      <h4>Alapízek erőssége (0–5)</h4>
+      <p class="v5-help">0 = nem érezhető · Üres = nem vizsgálta.</p>
       <div class="v5-intensities">${SENSORY_V5.basicTastes.map(t=>`<div class="v5-taste-row"><div class="v5-taste-name"><strong>${t.label}</strong><button type="button" class="v5-clear" data-taste-clear="${t.id}">Törlés</button></div><div class="v5-rating-row" role="group" aria-label="${escapeHtml(t.label)} ízintenzitás">${[0,1,2,3,4,5].map(n=>`<button type="button" class="v5-rate ${scope.intensities[t.id]===n?'selected':''}" data-taste-key="${t.id}" data-taste-value="${n}">${n}</button>`).join("")}</div></div>`).join("")}</div>
     `;
     qs(".v5-jar-add",container).addEventListener("click",()=>{
       const key=qs(".v5-jar-select",container).value;
-      if(!key) return showToast("Válasszon JAR-jellemzőt.");
+      if(!key) return showToast("Válasszon jellemzőt.");
       scope.jar[key]=null;redraw();updateFinalState();
     });
     qsa("[data-jar-remove]",container).forEach(b=>b.addEventListener("click",()=>{delete scope.jar[b.dataset.jarRemove];redraw();updateFinalState();}));
@@ -689,10 +704,13 @@ function v5ScalesComplete(prefix) {
   const st=v5State[prefix];
   if(!st) return false;
   const test=scope=>Object.values(scope.jar).every(x=>Number.isInteger(x) && x>=1 && x<=5);
-  return test(st.meal) && st.components.every(test);
+  return test(st.meal) && (st.componentEvaluation !== "yes" || st.components.every(test));
 }
 function v5ComponentsComplete(prefix) {
-  const components=v5State[prefix]?.components || [];
+  const st=v5State[prefix];
+  if (!st || !st.componentEvaluation) return false;
+  if (st.componentEvaluation === "no") return true;
+  const components=st.components || [];
   return components.length>0 && components.every(x=>safeText(x.name) && x.ratings.overall.score!==null);
 }
 function v5CaptureComponentRatings(component, prefix, container) {
@@ -700,9 +718,9 @@ function v5CaptureComponentRatings(component, prefix, container) {
   const attrs=ATTRS.map(([key,label])=>{
     const st=component.ratings[key];
     const choices=v5ComponentRecommendation(prefix,component,label,st.score);
-    return `<section class="v5-component-dim" data-dimension="${key}"><div class="v5-dim-heading"><strong>${escapeHtml(key==='overall'?'Komponens összminősége':label)}</strong><small>${key==='overall'?'Kötelező':'Opcionális'}</small></div><div class="v5-rating-row" role="group" aria-label="${escapeHtml(label)} pontszám">${[1,2,3,4,5].map(n=>`<button type="button" class="v5-rate ${st.score===n?'selected':''}" data-score-attr="${key}" data-score="${n}">${n}</button>`).join("")}</div>${key==='overall'?'':`<details class="v5-component-cata" data-open-key="${component.componentId}-${key}"><summary>CATA – ajánlott és teljes lista <span>(${st.descriptors.length} kiválasztva)</span></summary><div class="v5-component-cata-content"><strong>Ajánlott jellemzők</strong><div class="v5-cata-options">${choices.filter(x=>!st.descriptors.includes(x)).map(x=>`<button type="button" class="cata-choice" data-cata-add="${escapeHtml(x)}" data-attr="${key}">${escapeHtml(x)}</button>`).join("") || '<span class="small-muted">Nincs további ajánlott jellemző.</span>'}</div><label class="v5-search-label">Keresés a teljes listában<input class="v5-cata-search" type="search" data-attr="${key}" placeholder="Kezdje el begépelni…"></label><div class="v5-cata-search-results"></div><div class="v5-selected-chips">${st.descriptors.map((x,i)=>`<span class="chip">${escapeHtml(x)}<button type="button" data-cata-remove="${i}" data-attr="${key}" aria-label="${escapeHtml(x)} törlése">×</button></span>`).join("")}</div></div></details>`}</section>`;
+    return `<section class="v5-component-dim" data-dimension="${key}"><div class="v5-dim-heading"><strong>${escapeHtml(key==='overall'?'Komponens összminősége':label)}</strong><small>${key==='overall'?'Kötelező':'Opcionális'}</small></div><div class="v5-rating-row" role="group" aria-label="${escapeHtml(label)} pontszám">${[1,2,3,4,5].map(n=>`<button type="button" class="v5-rate ${st.score===n?'selected':''}" data-score-attr="${key}" data-score="${n}">${n}</button>`).join("")}</div>${key==='overall'?'':`<details class="v5-component-cata" data-open-key="${component.componentId}-${key}"><summary>Jellemzők <span>(${st.descriptors.length} kiválasztva)</span></summary><div class="v5-component-cata-content"><strong>Ajánlott jellemzők</strong><div class="v5-cata-options">${choices.filter(x=>!st.descriptors.includes(x)).map(x=>`<button type="button" class="cata-choice" data-cata-add="${escapeHtml(x)}" data-attr="${key}">${escapeHtml(x)}</button>`).join("") || '<span class="small-muted">Nincs további ajánlott jellemző.</span>'}</div><label class="v5-search-label">További jellemzők keresése<input class="v5-cata-search" type="search" data-attr="${key}" placeholder="Kezdje el begépelni…"></label><div class="v5-cata-search-results"></div><div class="v5-selected-chips">${st.descriptors.map((x,i)=>`<span class="chip">${escapeHtml(x)}<button type="button" data-cata-remove="${i}" data-attr="${key}" aria-label="${escapeHtml(x)} törlése">×</button></span>`).join("")}</div></div></details>`}</section>`;
   }).join("");
-  container.innerHTML=`<div class="v5-component-top"><label>Komponens neve<input class="v5-component-name" type="text" value="${escapeHtml(component.name)}" aria-label="Komponens neve"></label><label>Komponens típusa<select class="v5-component-kind">${SENSORY_V5.componentTypes.map(k=>`<option value="${k.id}" ${k.id===component.kind?'selected':''}>${escapeHtml(k.label)}</option>`).join("")}</select></label><button class="secondary-btn v5-remove-component" type="button">Komponens eltávolítása</button></div><p class="v5-help">A komponens összminősítése kötelező; a négy dimenzió és a CATA célzottan kitölthető. A részletes pontok nem módosítják az ételszintű pontszámokat.</p>${attrs}<details class="v5-component-scale-details" data-open-key="${component.componentId}-scales"><summary>JAR és alapízek intenzitása (választható)</summary><div class="v5-component-scales"></div></details>`;
+  container.innerHTML=`<div class="v5-component-top"><label>Komponens neve<input class="v5-component-name" type="text" value="${escapeHtml(component.name)}" aria-label="Komponens neve"></label><label>Komponens típusa<select class="v5-component-kind">${SENSORY_V5.componentTypes.map(k=>`<option value="${k.id}" ${k.id===component.kind?'selected':''}>${escapeHtml(k.label)}</option>`).join("")}</select></label><button class="secondary-btn v5-remove-component" type="button">Komponens eltávolítása</button></div>${attrs}<details class="v5-component-scale-details" data-open-key="${component.componentId}-scales"><summary>Jellemzők és alapízek (nem kötelező)</summary><div class="v5-component-scales"></div></details>`;
   qs(".v5-component-name",container).addEventListener("change",e=>{component.name=safeText(e.target.value);v5State[prefix].componentsEdited=true;v5RenderComponents(prefix);updateFinalState();});
   qs(".v5-component-kind",container).addEventListener("change",e=>{component.kind=e.target.value;v5State[prefix].componentsEdited=true;v5RenderComponents(prefix);updateFinalState();});
   qs(".v5-remove-component",container).addEventListener("click",()=>{
@@ -739,12 +757,44 @@ function v5CaptureComponentRatings(component, prefix, container) {
   });
   v5ScaleRows(prefix,qs(".v5-component-scales",container),component,component.name,component.kind);
 }
+function v5SetComponentEvaluation(prefix, answer) {
+  const st=v5State[prefix];
+  if (!st || st.componentEvaluation === answer) return;
+  if (answer === "no") {
+    if (v5HasComponentData(prefix) && !confirm("A már megadott komponensértékelések törlődnek. Folytatja?")) return;
+    st.components=[];
+    st.componentsEdited=false;
+  } else if (answer === "yes" && !st.components.length) {
+    st.components=v5SuggestedComponents(prefix);
+    st.componentsEdited=false;
+  }
+  st.componentEvaluation=answer;
+  v5RenderComponents(prefix);
+  updateFinalState();
+}
 function v5RenderComponents(prefix) {
   const root=qs(".v5-component-root",$(prefix==="soup"?"soupSensory":"mainSensory"));
   if(!root || !v5State[prefix]) return;
   const openKeys=new Set(qsa("details[open][data-open-key]",root).map(x=>x.dataset.openKey));
   const st=v5State[prefix];
-  root.innerHTML=`<div class="v5-section-header"><h3>Komponensszintű érzékszervi értékelés</h3><p class="v5-help">Az ajánlások az ételcsoportból származnak; kérjük, ellenőrizze őket. Minden megtartott komponenshez adjon összminősítést (1–5). A további vizsgálatok szabadon választhatók.</p></div><div class="v5-component-list"></div><div class="v5-component-operations"><select class="v5-new-kind" aria-label="Új komponens típusa">${SENSORY_V5.componentTypes.map(k=>`<option value="${k.id}">${escapeHtml(k.label)}</option>`).join("")}</select><input class="v5-new-name" type="text" placeholder="Új komponens neve" aria-label="Új komponens neve"><button type="button" class="secondary-btn v5-add-component">Komponens hozzáadása</button><button type="button" class="secondary-btn v5-recommend-again">Automatikus ajánlás visszaállítása</button></div>`;
+  const selected=st.componentEvaluation;
+  root.innerHTML=`
+    <section class="v5-component-prompt" aria-labelledby="${prefix}-component-question">
+      <h3 id="${prefix}-component-question">Szeretné külön értékelni a komponenseket?</h3>
+      <div class="v5-component-choice" role="group" aria-label="Komponensenkénti értékelés választása">
+        <button class="v5-choice ${selected==='yes'?'selected':''}" aria-pressed="${selected==='yes'}" type="button" data-component-choice="yes">Igen</button>
+        <button class="v5-choice ${selected==='no'?'selected':''}" aria-pressed="${selected==='no'}" type="button" data-component-choice="no">Nem</button>
+      </div>
+      
+      
+    </section>
+    ${selected==='yes'?`<section class="v5-component-editor">
+      <div class="v5-section-header"><h3>Komponensek értékelése</h3></div>
+      <div class="v5-component-list"></div>
+      <div class="v5-component-operations"><select class="v5-new-kind" aria-label="Új komponens típusa">${SENSORY_V5.componentTypes.map(k=>`<option value="${k.id}">${escapeHtml(k.label)}</option>`).join("")}</select><input class="v5-new-name" type="text" placeholder="Új komponens neve" aria-label="Új komponens neve"><button type="button" class="secondary-btn v5-add-component">Komponens hozzáadása</button><button type="button" class="secondary-btn v5-recommend-again">Ajánlottak visszaállítása</button></div>
+    </section>`:''}`;
+  qsa('[data-component-choice]',root).forEach(button=>button.addEventListener('click',()=>v5SetComponentEvaluation(prefix,button.dataset.componentChoice)));
+  if (selected !== 'yes') return;
   const list=qs(".v5-component-list",root);
   st.components.forEach((component,i)=>{
     const details=document.createElement("details");details.className="v5-component";details.dataset.openKey=component.componentId;
@@ -765,13 +815,14 @@ function v5RenderComponents(prefix) {
     st.components=v5SuggestedComponents(prefix);st.componentsEdited=false;v5RenderComponents(prefix);updateFinalState();
   });
 }
+
 function v5RenderExtendedSensory(prefix,container) {
   v5Init(prefix);
-  const heading=document.createElement("div");
-  heading.className="v5-scope-heading";
-  heading.innerHTML=`<h3>Teljes étel – kiegészítő érzékszervi vizsgálatok</h3><p class="v5-help">Az alap ételszintű CATA és az 1–5 pontos minősítés fentebb szerepel. Itt választható JAR és négy alapíz intenzitása rögzíthető.</p>`;
-  container.appendChild(heading);
-  v5ScaleRows(prefix,container,v5State[prefix].meal,"Teljes étel");
+  const extra=document.createElement("details");
+  extra.className="v5-meal-scale-details";
+  extra.innerHTML=`<summary>További értékelés (nem kötelező)</summary>`;
+  container.appendChild(extra);
+  v5ScaleRows(prefix,extra,v5State[prefix].meal,"Teljes étel");
   const cmp=document.createElement("div");cmp.className="v5-component-root";container.appendChild(cmp);
   v5RenderComponents(prefix);
 }
@@ -799,6 +850,17 @@ function v5ScaleExportRows(rows) {
   }
   return out;
 }
+function v5ComponentStatusRows(rows) {
+  const out=[];
+  for(const row of rows) for(const prefix of ["soup","main"]) {
+    const data=row.sensoryV5?.[prefix];
+    if (!data) continue;
+    const response=data.componentEvaluation === "yes" ? "yes" : data.componentEvaluation === "no" ? "no" : "legacy_unknown";
+    out.push({entry_event_id:row.submissionId,course:courseForPrefix(prefix),dish_name:row[prefix+"Dish"],component_evaluation:response,component_count:response === "yes" ? data.components.length : response === "no" ? 0 : (data.components||[]).length,method_version:row.sensoryV5Version||""});
+  }
+  return out;
+}
+const V5_STATUS_HEADERS=["entry_event_id","course","dish_name","component_evaluation","component_count","method_version"];
 const V5_COMPONENT_HEADERS=["entry_event_id","course","dish_name","component_id","component_name","component_type","component_source","method_version",...ATTRS.flatMap(([key])=>[key+"_score",key+"_cata"])];
 const V5_SCALE_HEADERS=["entry_event_id","course","dish_name","scope","component_id","component_name","scale_type","property","value","min_value","max_value","method_version"];
 function v5Csv(rows,headers) {
@@ -867,7 +929,7 @@ async function updateDishStatus(kind) {
   }
   const master = new Set(getMasterDishes(course));
   const user = new Set(await getUserDishes(course));
-  $(statusId).textContent = master.has(value) || user.has(value) ? "Törzsben szereplő étel" : "Új étel – beküldéskor a helyi törzsbe kerül";
+  $(statusId).textContent = master.has(value) || user.has(value) ? "Ismert étel" : "Új étel";
 }
 
 /* Mértékegységek átváltása */
@@ -1054,16 +1116,16 @@ function convertMainWaste() {
 
 function updateConversions() {
   const sc = convertSoupServed();
-  $("soupServedPreview").innerHTML = `<strong>Egységesített mennyiség:</strong> ${sc.ok ? `${fmtNumber(sc.value,3)} L` : "nem számítható"}<br><small>${escapeHtml(sc.basis)}</small>`;
+  $("soupServedPreview").innerHTML = `${sc.ok ? `<small>Átszámítva: ${fmtNumber(sc.value,3)} L</small>` : ""}`;
 
   const mc = convertMainServed();
-  $("mainServedPreview").innerHTML = `<strong>Egységesített mennyiség:</strong> ${mc.ok ? `${fmtNumber(mc.value,3)} kg` : "nem számítható"}<br><small>${escapeHtml(mc.basis)}</small>`;
+  $("mainServedPreview").innerHTML = `${mc.ok ? `<small>Átszámítva: ${fmtNumber(mc.value,3)} kg</small>` : ""}`;
 
   const sw = convertSoupWaste();
-  $("soupWastePreview").innerHTML = `<strong>Egységesített mennyiség:</strong> ${sw.ok ? `${fmtNumber(sw.value,3)} kg` : "nem számítható"}<br><small>${escapeHtml(sw.basis)}</small>`;
+  $("soupWastePreview").innerHTML = `${sw.ok ? `<small>Átszámítva: ${fmtNumber(sw.value,3)} kg</small>` : ""}`;
 
   const mw = convertMainWaste();
-  $("mainWastePreview").innerHTML = `<strong>Egységesített összes hulladék:</strong> ${mw.ok ? `${fmtNumber(mw.values.total,3)} kg` : "nem számítható"}<br><small>${escapeHtml(mw.basis || "")}</small>${mw.ok && !mw.componentValid ? `<div class="validation-box bad">A komponenshulladékok összege (${fmtNumber(mw.componentSum,3)} kg) meghaladja az összes hulladékot (${fmtNumber(mw.values.total,3)} kg).</div>` : ""}`;
+  $("mainWastePreview").innerHTML = `${mw.ok ? `<small>Átszámítva: ${fmtNumber(mw.values.total,3)} kg</small>` : ""}${mw.ok && !mw.componentValid ? `<div class="validation-box bad">A komponenshulladékok összege (${fmtNumber(mw.componentSum,3)} kg) meghaladja az összes hulladékot (${fmtNumber(mw.values.total,3)} kg).</div>` : ""}`;
 
   updateFinalState();
 }
@@ -1107,13 +1169,13 @@ function stepErrors(stepIndex) {
   if (stepIndex === 1) {
     requireText("soupDish", "Leves neve");
     requireNonNeg("soupServed", "Leves kitálalt mennyiség", true);
-    if (!convertSoupServed().ok) errors.push("Leves kitálalt mennyiség konverziója");
+    if (!convertSoupServed().ok) errors.push("Leves: kitálalt mennyiség és mértékegység");
     requireNonNeg("soupWaste", "Leves összes hulladék");
-    if (!convertSoupWaste().ok) errors.push("Leves hulladék konverziója");
+    if (!convertSoupWaste().ok) errors.push("Leves: hulladék mennyisége és mértékegysége");
   }
 
   if (stepIndex === 2) {
-    if (!sensoryComplete("soup")) errors.push("Leves: teljes étel, komponensek és kiválasztott JAR-értékek");
+    if (!sensoryComplete("soup")) errors.push(v5State.soup?.componentEvaluation === null ? "Leves: válassza ki, szeretné-e külön értékelni a komponenseket." : "Leves: ellenőrizze a pontszámokat és a kiválasztott értékeléseket.");
     requireText("soupImprovement", "Leves javítási javaslat");
     requireText("soupNote", "Leves megjegyzés");
   }
@@ -1121,17 +1183,17 @@ function stepErrors(stepIndex) {
   if (stepIndex === 3) {
     requireText("mainDish", "Második fogás neve");
     requireNonNeg("mainServed", "Második kitálalt mennyiség", true);
-    if (!convertMainServed().ok) errors.push("Második kitálalt mennyiség konverziója");
+    if (!convertMainServed().ok) errors.push("Második fogás: kitálalt mennyiség és mértékegység");
     ["mainWaste","mainWastePrimary","mainWasteSide","mainWasteOther"].forEach((id, i) =>
       requireNonNeg(id, ["Összes hulladék","Főkomponens-hulladék","Körethulladék","Egyéb hulladék"][i])
     );
     const mw = convertMainWaste();
-    if (!mw.ok) errors.push("Második hulladék konverziója");
+    if (!mw.ok) errors.push("Második fogás: hulladék mennyisége és mértékegysége");
     if (mw.ok && !mw.componentValid) errors.push("A komponenshulladékok összege nem lehet nagyobb az összes hulladéknál");
   }
 
   if (stepIndex === 4) {
-    if (!sensoryComplete("main")) errors.push("Második fogás: teljes étel, komponensek és kiválasztott JAR-értékek");
+    if (!sensoryComplete("main")) errors.push(v5State.main?.componentEvaluation === null ? "Második fogás: válassza ki, szeretné-e külön értékelni a komponenseket." : "Második fogás: ellenőrizze a pontszámokat és a kiválasztott értékeléseket.");
     requireText("mainImprovement", "Második javítási javaslat");
     requireText("mainNote", "Második megjegyzés");
   }
@@ -1251,13 +1313,12 @@ function updateStepValidationBox() {
   if (!box) return;
   const errors = currentStep === 5 ? allErrors() : stepErrors(currentStep);
   if (errors.length === 0) {
-    box.className = "validation-strip ok";
+    box.className = currentStep === 5 ? "validation-strip ok" : "validation-strip ok hidden";
     box.innerHTML = currentStep === 5
-      ? "<strong>Beküldésre kész.</strong> Minden kötelező mező ki van töltve."
-      : "<strong>Rendben.</strong> Ezen az oldalon minden kötelező adat megvan.";
+      ? "<strong>Mentésre kész.</strong>" : "";
   } else {
     box.className = "validation-strip bad";
-    box.innerHTML = `<strong>Hiányos mezők ezen az oldalon:</strong><ul>${errors.map(e => `<li>${escapeHtml(e)}</li>`).join("")}</ul>`;
+    box.innerHTML = `<strong>Kérjük, pótolja:</strong><ul>${errors.map(e => `<li>${escapeHtml(e)}</li>`).join("")}</ul>`;
   }
 }
 
@@ -1270,10 +1331,10 @@ function updateFinalState() {
   if (box) {
     if (errors.length === 0) {
       box.className = "validation-box ok";
-      box.textContent = "Minden kötelező mező megfelelően ki van töltve.";
+      box.textContent = "Minden szükséges adat megvan.";
     } else {
       box.className = "validation-box bad";
-      box.innerHTML = `<strong>A beküldéshez még szükséges:</strong><ul>${errors.map(e => `<li>${escapeHtml(e)}</li>`).join("")}</ul>`;
+      box.innerHTML = `<strong>Még szükséges:</strong><ul>${errors.map(e => `<li>${escapeHtml(e)}</li>`).join("")}</ul>`;
     }
   }
   applyValidationHighlights();
@@ -1334,7 +1395,6 @@ function renderReview() {
       <h3>Leves</h3>
       ${reviewLine("Étel", $("soupDish").value)}
       ${reviewLine("Kitálalt", `${$("soupServed").value || "–"} ${$("soupServedUnit").value}`)}
-      ${reviewLine("Standard", sc.ok ? `${fmtNumber(sc.value,3)} L` : "nem számítható")}
       ${reviewLine("Hőmérséklet", `${$("soupTemp").value} °C`)}
       ${reviewLine("Hulladék", sw.ok ? `${fmtNumber(sw.value,3)} kg` : "nem számítható")}
       ${reviewLine("Fotó", photoState.soup ? "rögzítve" : "nincs")}
@@ -1344,7 +1404,6 @@ function renderReview() {
       <h3>Második fogás</h3>
       ${reviewLine("Étel", $("mainDish").value)}
       ${reviewLine("Kitálalt", `${$("mainServed").value || "–"} ${$("mainServedUnit").value}`)}
-      ${reviewLine("Standard", mc.ok ? `${fmtNumber(mc.value,3)} kg` : "nem számítható")}
       ${reviewLine("Főétel / főkomponens hőmérséklete", `${$("mainTemp").value} °C`)}
       ${reviewLine("Köret hőmérséklete", `${$("mainSideTemp").value} °C`)}
       ${reviewLine("Hulladék", mw.ok ? `${fmtNumber(mw.values.total,3)} kg` : "nem számítható")}
@@ -1358,10 +1417,10 @@ function renderReview() {
   const box = $("finalValidation");
   if (!errors.length) {
     box.className = "validation-box ok";
-    box.textContent = "Minden kötelező mező megfelelően ki van töltve.";
+    box.textContent = "Minden szükséges adat megvan.";
   } else {
     box.className = "validation-box bad";
-    box.innerHTML = `<strong>A beküldéshez még szükséges:</strong><ul>${errors.map(e => `<li>${escapeHtml(e)}</li>`).join("")}</ul>`;
+    box.innerHTML = `<strong>Még szükséges:</strong><ul>${errors.map(e => `<li>${escapeHtml(e)}</li>`).join("")}</ul>`;
   }
   updateFinalState._busy = false;
 }
@@ -1388,7 +1447,7 @@ function makeSubmissionId() {
 async function submitCurrent() {
   const errors = allErrors();
   if (errors.length) {
-    showToast("A beküldés nem indítható: hiányzó vagy hibás mezők.", 4200);
+    showToast("Ellenőrizze a hiányzó vagy hibás mezőket.", 4200);
     return;
   }
 
@@ -1481,7 +1540,7 @@ async function submitCurrent() {
   await addUserDishIfNew("Leves", row.soupDish);
   await addUserDishIfNew("Második fogás", row.mainDish);
   await refreshDishLists();
-  showToast(`Sikeres beküldés: ${row.submissionId}`, 4200);
+  showToast(`Mérés mentve.`, 4200);
   await renderSaved();
   await updateExportCount();
   resetEntry();
@@ -1535,7 +1594,7 @@ async function renderSaved() {
       <div class="record-title">${escapeHtml(r.mealDate)} – ${escapeHtml(r.institutionName)}</div>
       <div class="record-meta">${escapeHtml(r.ageGroupLabel)} • ${escapeHtml(r.soupDish)} / ${escapeHtml(r.mainDish)}</div>
       <div class="record-meta">Adatrögzítő: ${escapeHtml(r.recorderName || "–")} • Fotó: ${(r.soupPhotoDataUrl || r.mainPhotoDataUrl) ? "igen" : "nem"}</div>
-      <div class="record-meta">Beküldve: ${escapeHtml(r.submittedAt)}</div>
+      <div class="record-meta">Mentve: ${escapeHtml(r.submittedAt)}</div>
       <div class="record-actions">
         <button class="secondary-btn small delete-record" data-id="${escapeHtml(r.submissionId)}" type="button">Törlés</button>
       </div>
@@ -1856,6 +1915,7 @@ async function exportEntryPackage() {
 
   const eventRows = sourceRows.map(rawRow);
   const componentRows = v5ComponentExportRows(sourceRows);
+  const statusRows = v5ComponentStatusRows(sourceRows);
   const scaleRows = v5ScaleExportRows(sourceRows);
   const mediaRows = [];
   const zipEntries = [];
@@ -1906,8 +1966,9 @@ async function exportEntryPackage() {
     event_count: eventRows.length,
     media_count: mediaRows.length,
     component_count: componentRows.length,
+    component_status_count: statusRows.length,
     scale_count: scaleRows.length,
-    files: ["entry_events.csv", "entry_media.csv", "entry_sensory_components.csv", "entry_sensory_scales.csv", "manifest.json", "photos/"]
+    files: ["entry_events.csv", "entry_media.csv", "entry_sensory_components.csv", "entry_sensory_component_status.csv", "entry_sensory_scales.csv", "manifest.json", "photos/"]
   };
 
   const mediaCsv = mediaRows.length
@@ -1919,6 +1980,7 @@ async function exportEntryPackage() {
     { name: "entry_media.csv", bytes: utf8Bytes(mediaCsv) },
     { name: "entry_events.csv", bytes: utf8Bytes(rowsToSemicolonCsv(eventRows)) },
     { name: "entry_sensory_components.csv", bytes: utf8Bytes(v5Csv(componentRows, V5_COMPONENT_HEADERS)) },
+    { name: "entry_sensory_component_status.csv", bytes: utf8Bytes(v5Csv(statusRows, V5_STATUS_HEADERS)) },
     { name: "entry_sensory_scales.csv", bytes: utf8Bytes(v5Csv(scaleRows, V5_SCALE_HEADERS)) }
   );
 
@@ -1944,13 +2006,13 @@ async function exportEntryPackage() {
         title: "Élelmiszerhulladék-megfigyelési adatok",
         text: "Adatrögzítő modulból származó export az élelmezésvezető részére."
       });
-      showToast(`ZIP letöltve és megosztásra előkészítve: ${eventRows.length} esemény, ${mediaRows.length} fotó.`, 4600);
+      showToast(`Adatcsomag letöltve: ${eventRows.length} mérés, ${mediaRows.length} fotó.`, 4600);
       return;
     } catch (err) {
       if (err && err.name !== "AbortError") console.warn("Megosztási hiba:", err);
     }
   }
-  showToast(`ZIP letöltve: ${eventRows.length} esemény, ${mediaRows.length} fotó. Küldje tovább az élelmezésvezetőnek.`, 4600);
+  showToast(`Adatcsomag letöltve: ${eventRows.length} mérés, ${mediaRows.length} fotó. Küldje el az élelmezésvezetőnek.`, 4600);
 }
 
 function makeSheetName(name) {
@@ -2052,8 +2114,8 @@ function switchView(name) {
 function updateAgeGuide() {
   const age = selectedAge();
   $("ageGuideBox").innerHTML = age
-    ? `<strong>${escapeHtml(age.label)}</strong><br>Adagolási útmutató korcsoport: <strong>${escapeHtml(age.reg_age_group)}</strong>.`
-    : "A korosztály kiválasztása után megjelenik az adagolási korcsoport.";
+    ? `Adagolási korcsoport: <strong>${escapeHtml(age.reg_age_group)}</strong>` : "";
+  $("ageGuideBox").classList.toggle("hidden", !age);
   updateConversionExtras();
   updateConversions();
 }
@@ -2187,7 +2249,7 @@ async function init() {
 
   if ("serviceWorker" in navigator) {
     try {
-      const registration = await navigator.serviceWorker.register("./sw-public-anon-v4.js?v=4.3.0");
+      const registration = await navigator.serviceWorker.register("./sw-public-anon-v4.js?v=5.2.0");
       await registration.update();
     } catch (err) {
       console.warn("Service worker registration failed:", err);

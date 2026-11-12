@@ -1,12 +1,12 @@
-const CACHE_NAME = "adatrögzítő-modul-v5-0-anon";
+const CACHE_NAME = "adatrögzítő-modul-v5-3-anon";
 const APP_SHELL = [
   "./",
   "./index.html",
-  "./styles-public-anon-v4.css?v=5.0.0",
-  "./app-public-anon-v4.js?v=5.0.0",
-  "./data-public-anon-v4.js?v=5.0.0",
-  "./cata-profiles-v4-3.js?v=5.0.0",
-  "./sensory-v5-config.js?v=5.0.0",
+  "./styles-public-anon-v4.css?v=5.3.0",
+  "./app-public-anon-v4.js?v=5.3.0",
+  "./data-public-anon-v4.js?v=5.3.0",
+  "./cata-profiles-v4-3.js?v=5.3.0",
+  "./sensory-v5-config.js?v=5.3.0",
   "./manifest.webmanifest",
   "./mate_logo.png"
 ];

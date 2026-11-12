@@ -1,14 +1,13 @@
-const CACHE_NAME = "adatrögzítő-modul-v3.1-anon";
+const CACHE_NAME = "adatrögzítő-modul-v5-3-anon";
 const APP_SHELL = [
   "./",
   "./index.html",
-  "./styles.css?v=3.1.0",
-  "./app.js?v=3.1.0",
-  "./data.js?v=3.1.0",
+  "./styles-public-anon-v4.css?v=5.3.0",
+  "./app-public-anon-v4.js?v=5.3.0",
+  "./data-public-anon-v4.js?v=5.3.0",
+  "./cata-profiles-v4-3.js?v=5.3.0",
+  "./sensory-v5-config.js?v=5.3.0",
   "./manifest.webmanifest",
-  "./icons/icon-192.png",
-  "./icons/icon-512.png",
-  "./logo.png",
   "./mate_logo.png"
 ];
 
@@ -33,7 +32,7 @@ self.addEventListener("fetch", event => {
 
   const url = new URL(event.request.url);
   const isAppAsset = event.request.mode === "navigate" ||
-    /\/(index\.html|app\.js|data\.js|styles\.css|manifest\.webmanifest)$/.test(url.pathname);
+    /\/(index\.html|app-public-anon-v4\.js|data-public-anon-v4\.js|cata-profiles-v4-3\.js|sensory-v5-config\.js|styles-public-anon-v4\.css|manifest\.webmanifest)$/.test(url.pathname);
 
   if (isAppAsset) {
     // Frissítéskor előbb a hálózatot próbáljuk, így nem keveredik

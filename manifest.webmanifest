@@ -1,7 +1,7 @@
 {
-  "name": "Adatrögzítő modul közétkeztetőknek – anonimizált verzió",
-  "short_name": "Adatrögzítő modul",
-  "description": "Anonimizált demonstrációs élelmiszerhulladék-megfigyelési adatbeviteli modul közétkeztetőknek",
+  "name": "ZeroWaste Entry – közétkeztetési adatbevitel",
+  "short_name": "ZeroWaste Entry",
+  "description": "Élelmiszerhulladék és érzékszervi minősítés rögzítése.",
   "start_url": "./index.html",
   "display": "standalone",
   "background_color": "#f7faf9",
