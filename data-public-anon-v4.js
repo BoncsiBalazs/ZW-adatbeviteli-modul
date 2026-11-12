@@ -31184,978 +31184,1095 @@ window.ZW_DATA = {
   ],
   "sensoryDescriptors": [
     {
+      "course": "Leves",
       "attribute": "Külső megjelenés",
       "descriptor": "Megfelelő",
       "polarity": "appropriate"
     },
     {
+      "course": "Leves",
       "attribute": "Külső megjelenés",
       "descriptor": "Nem étvágygerjesztő",
       "polarity": "negative"
     },
     {
-      "attribute": "Külső megjelenés",
-      "descriptor": "Túl halvány",
-      "polarity": "negative"
-    },
-    {
-      "attribute": "Külső megjelenés",
-      "descriptor": "Túl sötét",
-      "polarity": "negative"
-    },
-    {
+      "course": "Leves",
       "attribute": "Külső megjelenés",
       "descriptor": "Szokatlan színű",
       "polarity": "negative"
     },
     {
-      "attribute": "Külső megjelenés",
-      "descriptor": "Elszíneződött",
-      "polarity": "negative"
-    },
-    {
+      "course": "Leves",
       "attribute": "Külső megjelenés",
       "descriptor": "Fakó",
       "polarity": "negative"
     },
     {
-      "attribute": "Külső megjelenés",
-      "descriptor": "Túl piros",
-      "polarity": "negative"
-    },
-    {
-      "attribute": "Külső megjelenés",
-      "descriptor": "Túl barna",
-      "polarity": "negative"
-    },
-    {
-      "attribute": "Külső megjelenés",
-      "descriptor": "Túl zöld",
-      "polarity": "negative"
-    },
-    {
-      "attribute": "Külső megjelenés",
-      "descriptor": "Szürkés",
-      "polarity": "negative"
-    },
-    {
-      "attribute": "Külső megjelenés",
-      "descriptor": "Foltos",
-      "polarity": "negative"
-    },
-    {
-      "attribute": "Külső megjelenés",
-      "descriptor": "Egyenetlen színű",
-      "polarity": "negative"
-    },
-    {
-      "attribute": "Külső megjelenés",
-      "descriptor": "Szétesett",
-      "polarity": "negative"
-    },
-    {
-      "attribute": "Külső megjelenés",
-      "descriptor": "Összetört",
-      "polarity": "negative"
-    },
-    {
-      "attribute": "Külső megjelenés",
-      "descriptor": "Szétfőtt hatású",
-      "polarity": "negative"
-    },
-    {
-      "attribute": "Külső megjelenés",
-      "descriptor": "Nyers hatású",
-      "polarity": "negative"
-    },
-    {
-      "attribute": "Külső megjelenés",
-      "descriptor": "Összeesett",
-      "polarity": "negative"
-    },
-    {
-      "attribute": "Külső megjelenés",
-      "descriptor": "Csomós",
-      "polarity": "negative"
-    },
-    {
+      "course": "Leves",
       "attribute": "Külső megjelenés",
       "descriptor": "Túl híg látványú",
       "polarity": "negative"
     },
     {
+      "course": "Leves",
       "attribute": "Külső megjelenés",
       "descriptor": "Túl sűrű látványú",
       "polarity": "negative"
     },
     {
+      "course": "Leves",
       "attribute": "Külső megjelenés",
-      "descriptor": "Vizes felszínű",
+      "descriptor": "Csomós",
       "polarity": "negative"
     },
     {
+      "course": "Leves",
       "attribute": "Külső megjelenés",
       "descriptor": "Túl zsíros felszínű",
       "polarity": "negative"
     },
     {
-      "attribute": "Külső megjelenés",
-      "descriptor": "Olajos felszínű",
-      "polarity": "negative"
-    },
-    {
-      "attribute": "Külső megjelenés",
-      "descriptor": "Száraz felszínű",
-      "polarity": "negative"
-    },
-    {
-      "attribute": "Külső megjelenés",
-      "descriptor": "Kiszáradt",
-      "polarity": "negative"
-    },
-    {
+      "course": "Leves",
       "attribute": "Külső megjelenés",
       "descriptor": "Bőrösödött",
       "polarity": "negative"
     },
     {
+      "course": "Leves",
       "attribute": "Külső megjelenés",
-      "descriptor": "Ragacsos megjelenésű",
+      "descriptor": "Szétfőtt hatású",
       "polarity": "negative"
     },
     {
+      "course": "Leves",
       "attribute": "Külső megjelenés",
-      "descriptor": "Heterogén",
+      "descriptor": "Túl kevés betétet tartalmaz",
       "polarity": "negative"
     },
     {
+      "course": "Leves",
       "attribute": "Külső megjelenés",
-      "descriptor": "Rendezetlen tálalású",
+      "descriptor": "Túl sok betétet tartalmaz",
       "polarity": "negative"
     },
     {
+      "course": "Leves",
       "attribute": "Külső megjelenés",
-      "descriptor": "Aránytalan komponensű",
+      "descriptor": "Túl zavaros",
       "polarity": "negative"
     },
     {
+      "course": "Leves",
       "attribute": "Külső megjelenés",
-      "descriptor": "Kevés feltétet tartalmaz",
+      "descriptor": "Túl kevés zöldséget tartalmaz",
       "polarity": "negative"
     },
     {
+      "course": "Leves",
       "attribute": "Külső megjelenés",
-      "descriptor": "Túl sok levet tartalmaz",
+      "descriptor": "Túl kevés húst tartalmaz",
       "polarity": "negative"
     },
     {
+      "course": "Leves",
       "attribute": "Külső megjelenés",
-      "descriptor": "Kevés levet tartalmaz",
+      "descriptor": "Egyenetlen betételoszlású",
       "polarity": "negative"
     },
     {
+      "course": "Leves",
       "attribute": "Külső megjelenés",
-      "descriptor": "Idegen anyagot tartalmazó hatású",
+      "descriptor": "Kicsapódott habarású",
       "polarity": "negative"
     },
     {
+      "course": "Leves",
       "attribute": "Külső megjelenés",
-      "descriptor": "Nem friss hatású",
+      "descriptor": "Szétvált krémleves",
       "polarity": "negative"
     },
     {
+      "course": "Leves",
       "attribute": "Külső megjelenés",
-      "descriptor": "Megégett részeket tartalmaz",
+      "descriptor": "Túl sötét színű",
       "polarity": "negative"
     },
     {
+      "course": "Leves",
       "attribute": "Illat",
       "descriptor": "Megfelelő",
       "polarity": "appropriate"
     },
     {
-      "attribute": "Illat",
-      "descriptor": "Túl gyenge illatú",
-      "polarity": "negative"
-    },
-    {
+      "course": "Leves",
       "attribute": "Illat",
       "descriptor": "Jellegtelen illatú",
       "polarity": "negative"
     },
     {
+      "course": "Leves",
       "attribute": "Illat",
       "descriptor": "Túl intenzív illatú",
       "polarity": "negative"
     },
     {
+      "course": "Leves",
       "attribute": "Illat",
       "descriptor": "Kellemetlen illatú",
       "polarity": "negative"
     },
     {
-      "attribute": "Illat",
-      "descriptor": "Idegen illatú",
-      "polarity": "negative"
-    },
-    {
-      "attribute": "Illat",
-      "descriptor": "Állott illatú",
-      "polarity": "negative"
-    },
-    {
-      "attribute": "Illat",
-      "descriptor": "Dohos illatú",
-      "polarity": "negative"
-    },
-    {
-      "attribute": "Illat",
-      "descriptor": "Avas illatú",
-      "polarity": "negative"
-    },
-    {
-      "attribute": "Illat",
-      "descriptor": "Égett illatú",
-      "polarity": "negative"
-    },
-    {
-      "attribute": "Illat",
-      "descriptor": "Odaégett illatú",
-      "polarity": "negative"
-    },
-    {
-      "attribute": "Illat",
-      "descriptor": "Füstös illatú",
-      "polarity": "negative"
-    },
-    {
-      "attribute": "Illat",
-      "descriptor": "Erjedt illatú",
-      "polarity": "negative"
-    },
-    {
-      "attribute": "Illat",
-      "descriptor": "Savanykás illatú",
-      "polarity": "negative"
-    },
-    {
-      "attribute": "Illat",
-      "descriptor": "Túl édeskés illatú",
-      "polarity": "negative"
-    },
-    {
-      "attribute": "Illat",
-      "descriptor": "Fémes illatú",
-      "polarity": "negative"
-    },
-    {
-      "attribute": "Illat",
-      "descriptor": "Kénes illatú",
-      "polarity": "negative"
-    },
-    {
-      "attribute": "Illat",
-      "descriptor": "Műanyag jellegű illatú",
-      "polarity": "negative"
-    },
-    {
-      "attribute": "Illat",
-      "descriptor": "Vegyszeres illatú",
-      "polarity": "negative"
-    },
-    {
-      "attribute": "Illat",
-      "descriptor": "Túl zsíros illatú",
-      "polarity": "negative"
-    },
-    {
-      "attribute": "Illat",
-      "descriptor": "Olajos illatú",
-      "polarity": "negative"
-    },
-    {
-      "attribute": "Illat",
-      "descriptor": "Túl hagymás illatú",
-      "polarity": "negative"
-    },
-    {
-      "attribute": "Illat",
-      "descriptor": "Túl fokhagymás illatú",
-      "polarity": "negative"
-    },
-    {
-      "attribute": "Illat",
-      "descriptor": "Túl fűszeres illatú",
-      "polarity": "negative"
-    },
-    {
-      "attribute": "Illat",
-      "descriptor": "Túl borsos illatú",
-      "polarity": "negative"
-    },
-    {
-      "attribute": "Illat",
-      "descriptor": "Túl köményes illatú",
-      "polarity": "negative"
-    },
-    {
-      "attribute": "Illat",
-      "descriptor": "Túl paprikás illatú",
-      "polarity": "negative"
-    },
-    {
-      "attribute": "Illat",
-      "descriptor": "Túl húsos illatú",
-      "polarity": "negative"
-    },
-    {
-      "attribute": "Illat",
-      "descriptor": "Húsillat hiányos",
-      "polarity": "negative"
-    },
-    {
-      "attribute": "Illat",
-      "descriptor": "Zöldségillat hiányos",
-      "polarity": "negative"
-    },
-    {
-      "attribute": "Illat",
-      "descriptor": "Tejes illat túl erős",
-      "polarity": "negative"
-    },
-    {
-      "attribute": "Illat",
-      "descriptor": "Tojásos illat túl erős",
-      "polarity": "negative"
-    },
-    {
-      "attribute": "Illat",
-      "descriptor": "Halillat túl erős",
-      "polarity": "negative"
-    },
-    {
-      "attribute": "Illat",
-      "descriptor": "Hűtőszekrény-szagú",
-      "polarity": "negative"
-    },
-    {
-      "attribute": "Illat",
-      "descriptor": "Melegentartásból eredő illatú",
-      "polarity": "negative"
-    },
-    {
+      "course": "Leves",
       "attribute": "Illat",
       "descriptor": "Nem az ételre jellemző illatú",
       "polarity": "negative"
     },
     {
+      "course": "Leves",
       "attribute": "Illat",
-      "descriptor": "Frissesség hiányára utaló illatú",
+      "descriptor": "Állott illatú",
       "polarity": "negative"
     },
     {
+      "course": "Leves",
+      "attribute": "Illat",
+      "descriptor": "Égett illatú",
+      "polarity": "negative"
+    },
+    {
+      "course": "Leves",
+      "attribute": "Illat",
+      "descriptor": "Avas illatú",
+      "polarity": "negative"
+    },
+    {
+      "course": "Leves",
+      "attribute": "Illat",
+      "descriptor": "Túl fűszeres illatú",
+      "polarity": "negative"
+    },
+    {
+      "course": "Leves",
+      "attribute": "Illat",
+      "descriptor": "Idegen illatú",
+      "polarity": "negative"
+    },
+    {
+      "course": "Leves",
+      "attribute": "Illat",
+      "descriptor": "Túl erős hagymaillatú",
+      "polarity": "negative"
+    },
+    {
+      "course": "Leves",
+      "attribute": "Illat",
+      "descriptor": "Túl erős fokhagymaillatú",
+      "polarity": "negative"
+    },
+    {
+      "course": "Leves",
+      "attribute": "Illat",
+      "descriptor": "Túl erős halillatú",
+      "polarity": "negative"
+    },
+    {
+      "course": "Leves",
+      "attribute": "Illat",
+      "descriptor": "Túl erős füstös illatú",
+      "polarity": "negative"
+    },
+    {
+      "course": "Leves",
+      "attribute": "Illat",
+      "descriptor": "Nem jellemző savanykás illatú",
+      "polarity": "negative"
+    },
+    {
+      "course": "Leves",
       "attribute": "Íz",
       "descriptor": "Megfelelő",
       "polarity": "appropriate"
     },
     {
+      "course": "Leves",
       "attribute": "Íz",
       "descriptor": "Ízetlen",
       "polarity": "negative"
     },
     {
-      "attribute": "Íz",
-      "descriptor": "Jellegtelen ízű",
-      "polarity": "negative"
-    },
-    {
+      "course": "Leves",
       "attribute": "Íz",
       "descriptor": "Túl sós",
       "polarity": "negative"
     },
     {
+      "course": "Leves",
       "attribute": "Íz",
       "descriptor": "Sótlan",
       "polarity": "negative"
     },
     {
-      "attribute": "Íz",
-      "descriptor": "Túl édes",
-      "polarity": "negative"
-    },
-    {
-      "attribute": "Íz",
-      "descriptor": "Nem elég édes",
-      "polarity": "negative"
-    },
-    {
+      "course": "Leves",
       "attribute": "Íz",
       "descriptor": "Túl savanyú",
       "polarity": "negative"
     },
     {
+      "course": "Leves",
       "attribute": "Íz",
-      "descriptor": "Nem elég savanyú",
+      "descriptor": "Túl édes",
       "polarity": "negative"
     },
     {
+      "course": "Leves",
       "attribute": "Íz",
       "descriptor": "Keserű",
       "polarity": "negative"
     },
     {
-      "attribute": "Íz",
-      "descriptor": "Túl keserű",
-      "polarity": "negative"
-    },
-    {
-      "attribute": "Íz",
-      "descriptor": "Túl csípős",
-      "polarity": "negative"
-    },
-    {
+      "course": "Leves",
       "attribute": "Íz",
       "descriptor": "Túl fűszeres",
       "polarity": "negative"
     },
     {
+      "course": "Leves",
       "attribute": "Íz",
       "descriptor": "Kevéssé fűszeres",
       "polarity": "negative"
     },
     {
-      "attribute": "Íz",
-      "descriptor": "Túl borsos",
-      "polarity": "negative"
-    },
-    {
-      "attribute": "Íz",
-      "descriptor": "Túl paprikás",
-      "polarity": "negative"
-    },
-    {
-      "attribute": "Íz",
-      "descriptor": "Túl fokhagymás",
-      "polarity": "negative"
-    },
-    {
-      "attribute": "Íz",
-      "descriptor": "Túl hagymás",
-      "polarity": "negative"
-    },
-    {
-      "attribute": "Íz",
-      "descriptor": "Túl köményes",
-      "polarity": "negative"
-    },
-    {
+      "course": "Leves",
       "attribute": "Íz",
       "descriptor": "Túl zsíros ízű",
       "polarity": "negative"
     },
     {
-      "attribute": "Íz",
-      "descriptor": "Olajos ízű",
-      "polarity": "negative"
-    },
-    {
-      "attribute": "Íz",
-      "descriptor": "Égett ízű",
-      "polarity": "negative"
-    },
-    {
-      "attribute": "Íz",
-      "descriptor": "Odaégett ízű",
-      "polarity": "negative"
-    },
-    {
-      "attribute": "Íz",
-      "descriptor": "Avas ízű",
-      "polarity": "negative"
-    },
-    {
-      "attribute": "Íz",
-      "descriptor": "Állott ízű",
-      "polarity": "negative"
-    },
-    {
-      "attribute": "Íz",
-      "descriptor": "Idegen ízű",
-      "polarity": "negative"
-    },
-    {
-      "attribute": "Íz",
-      "descriptor": "Fémes ízű",
-      "polarity": "negative"
-    },
-    {
-      "attribute": "Íz",
-      "descriptor": "Vegyszeres ízű",
-      "polarity": "negative"
-    },
-    {
-      "attribute": "Íz",
-      "descriptor": "Erjedt ízű",
-      "polarity": "negative"
-    },
-    {
-      "attribute": "Íz",
-      "descriptor": "Nem harmonikus",
-      "polarity": "negative"
-    },
-    {
+      "course": "Leves",
       "attribute": "Íz",
       "descriptor": "Kellemetlen utóízű",
       "polarity": "negative"
     },
     {
+      "course": "Leves",
       "attribute": "Íz",
-      "descriptor": "Túl intenzív utóízű",
+      "descriptor": "Idegen ízű",
       "polarity": "negative"
     },
     {
-      "attribute": "Íz",
-      "descriptor": "Mellékízű",
-      "polarity": "negative"
-    },
-    {
-      "attribute": "Íz",
-      "descriptor": "Húsíz hiányos",
-      "polarity": "negative"
-    },
-    {
-      "attribute": "Íz",
-      "descriptor": "Zöldségíz hiányos",
-      "polarity": "negative"
-    },
-    {
-      "attribute": "Íz",
-      "descriptor": "Túl paradicsomos",
-      "polarity": "negative"
-    },
-    {
-      "attribute": "Íz",
-      "descriptor": "Túl lisztes ízű",
-      "polarity": "negative"
-    },
-    {
-      "attribute": "Íz",
-      "descriptor": "Túl tejes ízű",
-      "polarity": "negative"
-    },
-    {
-      "attribute": "Íz",
-      "descriptor": "Túl tojásos ízű",
-      "polarity": "negative"
-    },
-    {
+      "course": "Leves",
       "attribute": "Íz",
       "descriptor": "Nem az ételre jellemző ízű",
       "polarity": "negative"
     },
     {
+      "course": "Leves",
+      "attribute": "Íz",
+      "descriptor": "Túl csípős",
+      "polarity": "negative"
+    },
+    {
+      "course": "Leves",
+      "attribute": "Íz",
+      "descriptor": "Nem eléggé savanyú",
+      "polarity": "negative"
+    },
+    {
+      "course": "Leves",
+      "attribute": "Íz",
+      "descriptor": "Nem eléggé édes",
+      "polarity": "negative"
+    },
+    {
+      "course": "Leves",
+      "attribute": "Íz",
+      "descriptor": "Túl paprikás",
+      "polarity": "negative"
+    },
+    {
+      "course": "Leves",
+      "attribute": "Íz",
+      "descriptor": "Túl fokhagymás",
+      "polarity": "negative"
+    },
+    {
+      "course": "Leves",
+      "attribute": "Íz",
+      "descriptor": "Túl füstös",
+      "polarity": "negative"
+    },
+    {
+      "course": "Leves",
+      "attribute": "Íz",
+      "descriptor": "Lisztes ízű",
+      "polarity": "negative"
+    },
+    {
+      "course": "Leves",
+      "attribute": "Íz",
+      "descriptor": "Égett ízű",
+      "polarity": "negative"
+    },
+    {
+      "course": "Leves",
+      "attribute": "Íz",
+      "descriptor": "Vizes ízű",
+      "polarity": "negative"
+    },
+    {
+      "course": "Leves",
+      "attribute": "Íz",
+      "descriptor": "Túl ecetes",
+      "polarity": "negative"
+    },
+    {
+      "course": "Leves",
+      "attribute": "Íz",
+      "descriptor": "Gyenge húsízű",
+      "polarity": "negative"
+    },
+    {
+      "course": "Leves",
       "attribute": "Állomány",
       "descriptor": "Megfelelő",
       "polarity": "appropriate"
     },
     {
-      "attribute": "Állomány",
-      "descriptor": "Túl kemény",
-      "polarity": "negative"
-    },
-    {
-      "attribute": "Állomány",
-      "descriptor": "Túl puha",
-      "polarity": "negative"
-    },
-    {
-      "attribute": "Állomány",
-      "descriptor": "Túl száraz",
-      "polarity": "negative"
-    },
-    {
-      "attribute": "Állomány",
-      "descriptor": "Kiszáradt",
-      "polarity": "negative"
-    },
-    {
-      "attribute": "Állomány",
-      "descriptor": "Rágós",
-      "polarity": "negative"
-    },
-    {
-      "attribute": "Állomány",
-      "descriptor": "Gumis",
-      "polarity": "negative"
-    },
-    {
-      "attribute": "Állomány",
-      "descriptor": "Nyúlós",
-      "polarity": "negative"
-    },
-    {
-      "attribute": "Állomány",
-      "descriptor": "Ragacsos",
-      "polarity": "negative"
-    },
-    {
-      "attribute": "Állomány",
-      "descriptor": "Tapadós",
-      "polarity": "negative"
-    },
-    {
-      "attribute": "Állomány",
-      "descriptor": "Morzsálódó",
-      "polarity": "negative"
-    },
-    {
-      "attribute": "Állomány",
-      "descriptor": "Széteső",
-      "polarity": "negative"
-    },
-    {
-      "attribute": "Állomány",
-      "descriptor": "Pépes",
-      "polarity": "negative"
-    },
-    {
-      "attribute": "Állomány",
-      "descriptor": "Kásás",
-      "polarity": "negative"
-    },
-    {
+      "course": "Leves",
       "attribute": "Állomány",
       "descriptor": "Túl híg",
       "polarity": "negative"
     },
     {
+      "course": "Leves",
       "attribute": "Állomány",
       "descriptor": "Túl sűrű",
       "polarity": "negative"
     },
     {
+      "course": "Leves",
       "attribute": "Állomány",
       "descriptor": "Csomós",
       "polarity": "negative"
     },
     {
+      "course": "Leves",
       "attribute": "Állomány",
       "descriptor": "Szemcsés",
       "polarity": "negative"
     },
     {
-      "attribute": "Állomány",
-      "descriptor": "Darabos",
-      "polarity": "negative"
-    },
-    {
-      "attribute": "Állomány",
-      "descriptor": "Lisztízű/lisztes érzetű",
-      "polarity": "negative"
-    },
-    {
+      "course": "Leves",
       "attribute": "Állomány",
       "descriptor": "Vizes",
       "polarity": "negative"
     },
     {
+      "course": "Leves",
       "attribute": "Állomány",
-      "descriptor": "Túl zsíros",
+      "descriptor": "Pépes",
       "polarity": "negative"
     },
     {
-      "attribute": "Állomány",
-      "descriptor": "Olajos",
-      "polarity": "negative"
-    },
-    {
-      "attribute": "Állomány",
-      "descriptor": "Túl nedves",
-      "polarity": "negative"
-    },
-    {
-      "attribute": "Állomány",
-      "descriptor": "Bőrös",
-      "polarity": "negative"
-    },
-    {
-      "attribute": "Állomány",
-      "descriptor": "Szivacsos",
-      "polarity": "negative"
-    },
-    {
-      "attribute": "Állomány",
-      "descriptor": "Szálkás",
-      "polarity": "negative"
-    },
-    {
-      "attribute": "Állomány",
-      "descriptor": "Inas",
-      "polarity": "negative"
-    },
-    {
-      "attribute": "Állomány",
-      "descriptor": "Mócsingos",
-      "polarity": "negative"
-    },
-    {
-      "attribute": "Állomány",
-      "descriptor": "Túl rostos",
-      "polarity": "negative"
-    },
-    {
-      "attribute": "Állomány",
-      "descriptor": "Nyers",
-      "polarity": "negative"
-    },
-    {
-      "attribute": "Állomány",
-      "descriptor": "Alulfőtt",
-      "polarity": "negative"
-    },
-    {
-      "attribute": "Állomány",
-      "descriptor": "Túlfőtt",
-      "polarity": "negative"
-    },
-    {
+      "course": "Leves",
       "attribute": "Állomány",
       "descriptor": "Szétfőtt",
       "polarity": "negative"
     },
     {
+      "course": "Leves",
       "attribute": "Állomány",
-      "descriptor": "Túl ropogós",
+      "descriptor": "Alulfőtt",
       "polarity": "negative"
     },
     {
+      "course": "Leves",
       "attribute": "Állomány",
-      "descriptor": "Nem elég ropogós",
+      "descriptor": "Bőrös",
       "polarity": "negative"
     },
     {
-      "attribute": "Állomány",
-      "descriptor": "Túl tömör",
-      "polarity": "negative"
-    },
-    {
-      "attribute": "Állomány",
-      "descriptor": "Levegős/üreges",
-      "polarity": "negative"
-    },
-    {
-      "attribute": "Állomány",
-      "descriptor": "Kiszikkadt",
-      "polarity": "negative"
-    },
-    {
+      "course": "Leves",
       "attribute": "Állomány",
       "descriptor": "Egyenetlen állományú",
       "polarity": "negative"
     },
     {
-      "attribute": "Összkedveltség",
+      "course": "Leves",
+      "attribute": "Állomány",
+      "descriptor": "Levesbetét túl kemény",
+      "polarity": "negative"
+    },
+    {
+      "course": "Leves",
+      "attribute": "Állomány",
+      "descriptor": "Levesbetét túl puha",
+      "polarity": "negative"
+    },
+    {
+      "course": "Leves",
+      "attribute": "Állomány",
+      "descriptor": "Levesbetét összetapadt",
+      "polarity": "negative"
+    },
+    {
+      "course": "Leves",
+      "attribute": "Állomány",
+      "descriptor": "Levesbetét szétesett",
+      "polarity": "negative"
+    },
+    {
+      "course": "Leves",
+      "attribute": "Állomány",
+      "descriptor": "Zöldségdarabok túl kemények",
+      "polarity": "negative"
+    },
+    {
+      "course": "Leves",
+      "attribute": "Állomány",
+      "descriptor": "Húsdarabok rágósak",
+      "polarity": "negative"
+    },
+    {
+      "course": "Leves",
+      "attribute": "Állomány",
+      "descriptor": "Krémleves nem kellően sima",
+      "polarity": "negative"
+    },
+    {
+      "course": "Leves",
+      "attribute": "Állomány",
+      "descriptor": "Habarás szemcsés",
+      "polarity": "negative"
+    },
+    {
+      "course": "Leves",
+      "attribute": "Állomány",
+      "descriptor": "Pirított kenyérkocka elázott",
+      "polarity": "negative"
+    },
+    {
+      "course": "Leves",
+      "attribute": "Állomány",
+      "descriptor": "Gyümölcsdarabok szétfőttek",
+      "polarity": "negative"
+    },
+    {
+      "course": "Második fogás",
+      "attribute": "Külső megjelenés",
       "descriptor": "Megfelelő",
       "polarity": "appropriate"
     },
     {
-      "attribute": "Összkedveltség",
-      "descriptor": "Nem kedvelt",
-      "polarity": "negative"
-    },
-    {
-      "attribute": "Összkedveltség",
-      "descriptor": "Nehezen fogyasztható",
-      "polarity": "negative"
-    },
-    {
-      "attribute": "Összkedveltség",
+      "course": "Második fogás",
+      "attribute": "Külső megjelenés",
       "descriptor": "Nem étvágygerjesztő",
       "polarity": "negative"
     },
     {
-      "attribute": "Összkedveltség",
-      "descriptor": "Jellegtelen",
+      "course": "Második fogás",
+      "attribute": "Külső megjelenés",
+      "descriptor": "Szokatlan színű",
       "polarity": "negative"
     },
     {
-      "attribute": "Összkedveltség",
-      "descriptor": "Szokatlan",
+      "course": "Második fogás",
+      "attribute": "Külső megjelenés",
+      "descriptor": "Elszíneződött",
       "polarity": "negative"
     },
     {
-      "attribute": "Összkedveltség",
-      "descriptor": "Nem harmonikus",
-      "polarity": "negative"
-    },
-    {
-      "attribute": "Összkedveltség",
-      "descriptor": "Túl intenzív",
-      "polarity": "negative"
-    },
-    {
-      "attribute": "Összkedveltség",
-      "descriptor": "Túl gyenge karakterű",
-      "polarity": "negative"
-    },
-    {
-      "attribute": "Összkedveltség",
-      "descriptor": "Kellemetlen utóízű",
-      "polarity": "negative"
-    },
-    {
-      "attribute": "Összkedveltség",
-      "descriptor": "Kellemetlen illatú",
-      "polarity": "negative"
-    },
-    {
-      "attribute": "Összkedveltség",
-      "descriptor": "Idegen ízű",
-      "polarity": "negative"
-    },
-    {
-      "attribute": "Összkedveltség",
-      "descriptor": "Idegen illatú",
-      "polarity": "negative"
-    },
-    {
-      "attribute": "Összkedveltség",
-      "descriptor": "Túl sós",
-      "polarity": "negative"
-    },
-    {
-      "attribute": "Összkedveltség",
-      "descriptor": "Sótlan",
-      "polarity": "negative"
-    },
-    {
-      "attribute": "Összkedveltség",
-      "descriptor": "Túl édes",
-      "polarity": "negative"
-    },
-    {
-      "attribute": "Összkedveltség",
-      "descriptor": "Túl savanyú",
-      "polarity": "negative"
-    },
-    {
-      "attribute": "Összkedveltség",
-      "descriptor": "Túl keserű",
-      "polarity": "negative"
-    },
-    {
-      "attribute": "Összkedveltség",
-      "descriptor": "Túl fűszeres",
-      "polarity": "negative"
-    },
-    {
-      "attribute": "Összkedveltség",
-      "descriptor": "Kevéssé fűszeres",
-      "polarity": "negative"
-    },
-    {
-      "attribute": "Összkedveltség",
-      "descriptor": "Túl zsíros",
-      "polarity": "negative"
-    },
-    {
-      "attribute": "Összkedveltség",
-      "descriptor": "Túl száraz",
-      "polarity": "negative"
-    },
-    {
-      "attribute": "Összkedveltség",
-      "descriptor": "Túl kemény",
-      "polarity": "negative"
-    },
-    {
-      "attribute": "Összkedveltség",
-      "descriptor": "Túl puha",
-      "polarity": "negative"
-    },
-    {
-      "attribute": "Összkedveltség",
-      "descriptor": "Túl híg",
-      "polarity": "negative"
-    },
-    {
-      "attribute": "Összkedveltség",
-      "descriptor": "Túl sűrű",
-      "polarity": "negative"
-    },
-    {
-      "attribute": "Összkedveltség",
-      "descriptor": "Rágós",
-      "polarity": "negative"
-    },
-    {
-      "attribute": "Összkedveltség",
-      "descriptor": "Pépes",
-      "polarity": "negative"
-    },
-    {
-      "attribute": "Összkedveltség",
-      "descriptor": "Túlfőtt",
-      "polarity": "negative"
-    },
-    {
-      "attribute": "Összkedveltség",
-      "descriptor": "Alulfőtt",
-      "polarity": "negative"
-    },
-    {
-      "attribute": "Összkedveltség",
+      "course": "Második fogás",
+      "attribute": "Külső megjelenés",
       "descriptor": "Szétesett",
       "polarity": "negative"
     },
     {
-      "attribute": "Összkedveltség",
-      "descriptor": "Nem megfelelő színű",
+      "course": "Második fogás",
+      "attribute": "Külső megjelenés",
+      "descriptor": "Szétfőtt hatású",
       "polarity": "negative"
     },
     {
-      "attribute": "Összkedveltség",
-      "descriptor": "Nem megfelelő tálalású",
+      "course": "Második fogás",
+      "attribute": "Külső megjelenés",
+      "descriptor": "Kiszáradt",
       "polarity": "negative"
     },
     {
-      "attribute": "Összkedveltség",
+      "course": "Második fogás",
+      "attribute": "Külső megjelenés",
+      "descriptor": "Megégett részeket tartalmaz",
+      "polarity": "negative"
+    },
+    {
+      "course": "Második fogás",
+      "attribute": "Külső megjelenés",
+      "descriptor": "Túl zsíros felszínű",
+      "polarity": "negative"
+    },
+    {
+      "course": "Második fogás",
+      "attribute": "Külső megjelenés",
+      "descriptor": "Rendezetlen tálalású",
+      "polarity": "negative"
+    },
+    {
+      "course": "Második fogás",
+      "attribute": "Külső megjelenés",
       "descriptor": "Aránytalan komponensű",
       "polarity": "negative"
     },
     {
-      "attribute": "Összkedveltség",
-      "descriptor": "Nem friss hatású",
+      "course": "Második fogás",
+      "attribute": "Külső megjelenés",
+      "descriptor": "Kevés feltétet tartalmaz",
       "polarity": "negative"
     },
     {
-      "attribute": "Összkedveltség",
-      "descriptor": "Állott jellegű",
+      "course": "Második fogás",
+      "attribute": "Külső megjelenés",
+      "descriptor": "Kevés levet tartalmaz",
       "polarity": "negative"
     },
     {
-      "attribute": "Összkedveltség",
-      "descriptor": "Odaégett jellegű",
+      "course": "Második fogás",
+      "attribute": "Külső megjelenés",
+      "descriptor": "Egyenetlenül pirult",
       "polarity": "negative"
     },
     {
-      "attribute": "Összkedveltség",
-      "descriptor": "Adagösszetétel szempontjából nem megfelelő",
+      "course": "Második fogás",
+      "attribute": "Külső megjelenés",
+      "descriptor": "Túl sápadt",
       "polarity": "negative"
     },
     {
-      "attribute": "Összkedveltség",
-      "descriptor": "Az étel jellegétől eltérő",
+      "course": "Második fogás",
+      "attribute": "Külső megjelenés",
+      "descriptor": "Panír levált",
       "polarity": "negative"
     },
     {
-      "attribute": "Összkedveltség",
-      "descriptor": "Jelentős javítást igényel",
+      "course": "Második fogás",
+      "attribute": "Külső megjelenés",
+      "descriptor": "Panír átázott",
+      "polarity": "negative"
+    },
+    {
+      "course": "Második fogás",
+      "attribute": "Külső megjelenés",
+      "descriptor": "Túl kevés köretet tartalmaz",
+      "polarity": "negative"
+    },
+    {
+      "course": "Második fogás",
+      "attribute": "Külső megjelenés",
+      "descriptor": "Mártás szétvált",
+      "polarity": "negative"
+    },
+    {
+      "course": "Második fogás",
+      "attribute": "Külső megjelenés",
+      "descriptor": "Főzelék bőrösödött",
+      "polarity": "negative"
+    },
+    {
+      "course": "Második fogás",
+      "attribute": "Külső megjelenés",
+      "descriptor": "Rakott étel rétegei szétestek",
+      "polarity": "negative"
+    },
+    {
+      "course": "Második fogás",
+      "attribute": "Külső megjelenés",
+      "descriptor": "Kevés öntetet tartalmaz",
+      "polarity": "negative"
+    },
+    {
+      "course": "Második fogás",
+      "attribute": "Illat",
+      "descriptor": "Megfelelő",
+      "polarity": "appropriate"
+    },
+    {
+      "course": "Második fogás",
+      "attribute": "Illat",
+      "descriptor": "Jellegtelen illatú",
+      "polarity": "negative"
+    },
+    {
+      "course": "Második fogás",
+      "attribute": "Illat",
+      "descriptor": "Túl intenzív illatú",
+      "polarity": "negative"
+    },
+    {
+      "course": "Második fogás",
+      "attribute": "Illat",
+      "descriptor": "Kellemetlen illatú",
+      "polarity": "negative"
+    },
+    {
+      "course": "Második fogás",
+      "attribute": "Illat",
+      "descriptor": "Nem az ételre jellemző illatú",
+      "polarity": "negative"
+    },
+    {
+      "course": "Második fogás",
+      "attribute": "Illat",
+      "descriptor": "Állott illatú",
+      "polarity": "negative"
+    },
+    {
+      "course": "Második fogás",
+      "attribute": "Illat",
+      "descriptor": "Égett illatú",
+      "polarity": "negative"
+    },
+    {
+      "course": "Második fogás",
+      "attribute": "Illat",
+      "descriptor": "Avas illatú",
+      "polarity": "negative"
+    },
+    {
+      "course": "Második fogás",
+      "attribute": "Illat",
+      "descriptor": "Túl fűszeres illatú",
+      "polarity": "negative"
+    },
+    {
+      "course": "Második fogás",
+      "attribute": "Illat",
+      "descriptor": "Idegen illatú",
+      "polarity": "negative"
+    },
+    {
+      "course": "Második fogás",
+      "attribute": "Illat",
+      "descriptor": "Erősen sütőolaj-szagú",
+      "polarity": "negative"
+    },
+    {
+      "course": "Második fogás",
+      "attribute": "Illat",
+      "descriptor": "Túl erős halillatú",
+      "polarity": "negative"
+    },
+    {
+      "course": "Második fogás",
+      "attribute": "Illat",
+      "descriptor": "Túl erős hagymaillatú",
+      "polarity": "negative"
+    },
+    {
+      "course": "Második fogás",
+      "attribute": "Illat",
+      "descriptor": "Túl erős fokhagymaillatú",
+      "polarity": "negative"
+    },
+    {
+      "course": "Második fogás",
+      "attribute": "Illat",
+      "descriptor": "Nem jellemző savanykás illatú",
+      "polarity": "negative"
+    },
+    {
+      "course": "Második fogás",
+      "attribute": "Illat",
+      "descriptor": "Túl erős káposztaillatú",
+      "polarity": "negative"
+    },
+    {
+      "course": "Második fogás",
+      "attribute": "Íz",
+      "descriptor": "Megfelelő",
+      "polarity": "appropriate"
+    },
+    {
+      "course": "Második fogás",
+      "attribute": "Íz",
+      "descriptor": "Ízetlen",
+      "polarity": "negative"
+    },
+    {
+      "course": "Második fogás",
+      "attribute": "Íz",
+      "descriptor": "Túl sós",
+      "polarity": "negative"
+    },
+    {
+      "course": "Második fogás",
+      "attribute": "Íz",
+      "descriptor": "Sótlan",
+      "polarity": "negative"
+    },
+    {
+      "course": "Második fogás",
+      "attribute": "Íz",
+      "descriptor": "Túl édes",
+      "polarity": "negative"
+    },
+    {
+      "course": "Második fogás",
+      "attribute": "Íz",
+      "descriptor": "Túl savanyú",
+      "polarity": "negative"
+    },
+    {
+      "course": "Második fogás",
+      "attribute": "Íz",
+      "descriptor": "Keserű",
+      "polarity": "negative"
+    },
+    {
+      "course": "Második fogás",
+      "attribute": "Íz",
+      "descriptor": "Túl fűszeres",
+      "polarity": "negative"
+    },
+    {
+      "course": "Második fogás",
+      "attribute": "Íz",
+      "descriptor": "Kevéssé fűszeres",
+      "polarity": "negative"
+    },
+    {
+      "course": "Második fogás",
+      "attribute": "Íz",
+      "descriptor": "Túl zsíros ízű",
+      "polarity": "negative"
+    },
+    {
+      "course": "Második fogás",
+      "attribute": "Íz",
+      "descriptor": "Égett ízű",
+      "polarity": "negative"
+    },
+    {
+      "course": "Második fogás",
+      "attribute": "Íz",
+      "descriptor": "Kellemetlen utóízű",
+      "polarity": "negative"
+    },
+    {
+      "course": "Második fogás",
+      "attribute": "Íz",
+      "descriptor": "Idegen ízű",
+      "polarity": "negative"
+    },
+    {
+      "course": "Második fogás",
+      "attribute": "Íz",
+      "descriptor": "Nem az ételre jellemző ízű",
+      "polarity": "negative"
+    },
+    {
+      "course": "Második fogás",
+      "attribute": "Íz",
+      "descriptor": "Nem eléggé édes",
+      "polarity": "negative"
+    },
+    {
+      "course": "Második fogás",
+      "attribute": "Íz",
+      "descriptor": "Túl csípős",
+      "polarity": "negative"
+    },
+    {
+      "course": "Második fogás",
+      "attribute": "Íz",
+      "descriptor": "Túl ecetes",
+      "polarity": "negative"
+    },
+    {
+      "course": "Második fogás",
+      "attribute": "Íz",
+      "descriptor": "Lisztes ízű",
+      "polarity": "negative"
+    },
+    {
+      "course": "Második fogás",
+      "attribute": "Íz",
+      "descriptor": "Olajos ízű",
+      "polarity": "negative"
+    },
+    {
+      "course": "Második fogás",
+      "attribute": "Íz",
+      "descriptor": "Túl paprikás",
+      "polarity": "negative"
+    },
+    {
+      "course": "Második fogás",
+      "attribute": "Íz",
+      "descriptor": "Túl fokhagymás",
+      "polarity": "negative"
+    },
+    {
+      "course": "Második fogás",
+      "attribute": "Íz",
+      "descriptor": "Túl hagymás",
+      "polarity": "negative"
+    },
+    {
+      "course": "Második fogás",
+      "attribute": "Íz",
+      "descriptor": "Túl füstös",
+      "polarity": "negative"
+    },
+    {
+      "course": "Második fogás",
+      "attribute": "Íz",
+      "descriptor": "Vizes ízű",
+      "polarity": "negative"
+    },
+    {
+      "course": "Második fogás",
+      "attribute": "Íz",
+      "descriptor": "Gyenge húsízű",
+      "polarity": "negative"
+    },
+    {
+      "course": "Második fogás",
+      "attribute": "Íz",
+      "descriptor": "Nem eléggé savanyú",
+      "polarity": "negative"
+    },
+    {
+      "course": "Második fogás",
+      "attribute": "Állomány",
+      "descriptor": "Megfelelő",
+      "polarity": "appropriate"
+    },
+    {
+      "course": "Második fogás",
+      "attribute": "Állomány",
+      "descriptor": "Túl kemény",
+      "polarity": "negative"
+    },
+    {
+      "course": "Második fogás",
+      "attribute": "Állomány",
+      "descriptor": "Túl puha",
+      "polarity": "negative"
+    },
+    {
+      "course": "Második fogás",
+      "attribute": "Állomány",
+      "descriptor": "Túl száraz",
+      "polarity": "negative"
+    },
+    {
+      "course": "Második fogás",
+      "attribute": "Állomány",
+      "descriptor": "Rágós",
+      "polarity": "negative"
+    },
+    {
+      "course": "Második fogás",
+      "attribute": "Állomány",
+      "descriptor": "Gumis",
+      "polarity": "negative"
+    },
+    {
+      "course": "Második fogás",
+      "attribute": "Állomány",
+      "descriptor": "Ragacsos",
+      "polarity": "negative"
+    },
+    {
+      "course": "Második fogás",
+      "attribute": "Állomány",
+      "descriptor": "Morzsálódó",
+      "polarity": "negative"
+    },
+    {
+      "course": "Második fogás",
+      "attribute": "Állomány",
+      "descriptor": "Széteső",
+      "polarity": "negative"
+    },
+    {
+      "course": "Második fogás",
+      "attribute": "Állomány",
+      "descriptor": "Pépes",
+      "polarity": "negative"
+    },
+    {
+      "course": "Második fogás",
+      "attribute": "Állomány",
+      "descriptor": "Kásás",
+      "polarity": "negative"
+    },
+    {
+      "course": "Második fogás",
+      "attribute": "Állomány",
+      "descriptor": "Alulfőtt",
+      "polarity": "negative"
+    },
+    {
+      "course": "Második fogás",
+      "attribute": "Állomány",
+      "descriptor": "Túlfőtt",
+      "polarity": "negative"
+    },
+    {
+      "course": "Második fogás",
+      "attribute": "Állomány",
+      "descriptor": "Egyenetlen állományú",
+      "polarity": "negative"
+    },
+    {
+      "course": "Második fogás",
+      "attribute": "Állomány",
+      "descriptor": "Túl zsíros",
+      "polarity": "negative"
+    },
+    {
+      "course": "Második fogás",
+      "attribute": "Állomány",
+      "descriptor": "Főzelék túl híg",
+      "polarity": "negative"
+    },
+    {
+      "course": "Második fogás",
+      "attribute": "Állomány",
+      "descriptor": "Főzelék túl sűrű",
+      "polarity": "negative"
+    },
+    {
+      "course": "Második fogás",
+      "attribute": "Állomány",
+      "descriptor": "Főzelék csomós",
+      "polarity": "negative"
+    },
+    {
+      "course": "Második fogás",
+      "attribute": "Állomány",
+      "descriptor": "Főzelék lisztes szájérzetű",
+      "polarity": "negative"
+    },
+    {
+      "course": "Második fogás",
+      "attribute": "Állomány",
+      "descriptor": "Mártás túl híg",
+      "polarity": "negative"
+    },
+    {
+      "course": "Második fogás",
+      "attribute": "Állomány",
+      "descriptor": "Mártás túl sűrű",
+      "polarity": "negative"
+    },
+    {
+      "course": "Második fogás",
+      "attribute": "Állomány",
+      "descriptor": "Mártás csomós",
+      "polarity": "negative"
+    },
+    {
+      "course": "Második fogás",
+      "attribute": "Állomány",
+      "descriptor": "Panír nem ropogós",
+      "polarity": "negative"
+    },
+    {
+      "course": "Második fogás",
+      "attribute": "Állomány",
+      "descriptor": "Panír túl kemény",
+      "polarity": "negative"
+    },
+    {
+      "course": "Második fogás",
+      "attribute": "Állomány",
+      "descriptor": "Hús inas",
+      "polarity": "negative"
+    },
+    {
+      "course": "Második fogás",
+      "attribute": "Állomány",
+      "descriptor": "Hús túl rostos",
+      "polarity": "negative"
+    },
+    {
+      "course": "Második fogás",
+      "attribute": "Állomány",
+      "descriptor": "Halhús túl száraz",
+      "polarity": "negative"
+    },
+    {
+      "course": "Második fogás",
+      "attribute": "Állomány",
+      "descriptor": "Tészta összetapadt",
+      "polarity": "negative"
+    },
+    {
+      "course": "Második fogás",
+      "attribute": "Állomány",
+      "descriptor": "Tészta szétfőtt",
+      "polarity": "negative"
+    },
+    {
+      "course": "Második fogás",
+      "attribute": "Állomány",
+      "descriptor": "Rizs túl kemény",
+      "polarity": "negative"
+    },
+    {
+      "course": "Második fogás",
+      "attribute": "Állomány",
+      "descriptor": "Rizs ragacsos",
+      "polarity": "negative"
+    },
+    {
+      "course": "Második fogás",
+      "attribute": "Állomány",
+      "descriptor": "Burgonyapüré csomós",
+      "polarity": "negative"
+    },
+    {
+      "course": "Második fogás",
+      "attribute": "Állomány",
+      "descriptor": "Köret kiszáradt",
+      "polarity": "negative"
+    },
+    {
+      "course": "Második fogás",
+      "attribute": "Állomány",
+      "descriptor": "Gőzgombóc tömör",
+      "polarity": "negative"
+    },
+    {
+      "course": "Második fogás",
+      "attribute": "Állomány",
+      "descriptor": "Sütemény száraz",
+      "polarity": "negative"
+    },
+    {
+      "course": "Második fogás",
+      "attribute": "Állomány",
+      "descriptor": "Öntet túl híg",
+      "polarity": "negative"
+    },
+    {
+      "course": "Második fogás",
+      "attribute": "Állomány",
+      "descriptor": "Öntet túl sűrű",
+      "polarity": "negative"
+    },
+    {
+      "course": "Második fogás",
+      "attribute": "Állomány",
+      "descriptor": "Rakott étel túl száraz",
       "polarity": "negative"
     }
   ],
   "meta": {
-    "version": "3.1.0",
+    "version": "3.3.0",
+    "sensoryDescriptorVersion": "cata-pilot-2026-11-v2-dish-informed",
     "generatedAt": "2026-10-04",
     "notes": "Adatrögzítő modul közétkeztetőknek – anonimizált intézménytörzs, CATA-érzékszervi skálák, feldolgozómodul-kompatibilis ZIP export"
   },

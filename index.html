@@ -9,19 +9,21 @@
   <link rel="manifest" href="./manifest.webmanifest">
   <link rel="icon" href="./icons/icon-192.png">
   <link rel="apple-touch-icon" href="./icons/icon-192.png">
-  <link rel="stylesheet" href="./styles-public-anon-v4.css?v=4.0.0">
+  <link rel="stylesheet" href="./styles-public-anon-v4.css?v=5.0.0">
   <script>
 
     if ("caches" in window) {
       caches.keys().then(keys => Promise.all(
-        keys.filter(k => k.startsWith("adatrögzítő-modul-") && k !== "adatrögzítő-modul-v4-anon")
+        keys.filter(k => k.startsWith("adatrögzítő-modul-") && k !== "adatrögzítő-modul-v5-0-anon")
             .map(k => caches.delete(k))
       )).catch(() => {});
     }
   </script>
-  <script src="./data-public-anon-v4.js?v=4.0.0"></script>
+  <script src="./data-public-anon-v4.js?v=5.0.0"></script>
+  <script src="./cata-profiles-v4-3.js?v=5.0.0"></script>
+  <script src="./sensory-v5-config.js?v=5.0.0"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js" defer></script>
-  <script src="./app-public-anon-v4.js?v=4.0.0" defer></script>
+  <script src="./app-public-anon-v4.js?v=5.0.0" defer></script>
 </head>
 <body>
   <div id="app">
@@ -171,7 +173,7 @@
             <div class="card">
               <div class="section-kicker">LEVES</div>
               <h2>Érzékszervi minősítés</h2>
-              <div class="sensory-instruction"><strong>Érzékszervi minősítés – CATA:</strong> Először adja meg az 1–5 pontszámot, majd <strong>először a listából válassza ki</strong> az összes, ételre jellemző tulajdonságot, és mindegyiket a <strong>„Hozzáad”</strong> gombbal rögzítse. Ha a szükséges jellemző nincs a listában, csak ezután használja az <strong>„Egyéb tulajdonság”</strong> lehetőséget, majd azt is adja hozzá. A <strong>„Megfelelő”</strong> jellemző kizárólag <strong>5 pontos</strong> értékelésnél választható. <strong>1–4 pont esetén csak kedvezőtlen / hibajellemző tulajdonságokat jelöljön.</strong></div>
+              <div class="sensory-instruction"><strong>Érzékszervi minősítés – CATA, komponensek, JAR és alapízek:</strong> Az ételhez ajánlott tulajdonságokat az alkalmazás előre megjeleníti. Az ételcsoportokat a fenti panelen ellenőrizheti és szükség esetén módosíthatja. Először adja meg az <strong>1–5 pontszámot</strong>, majd az ajánlott jellemzőkre kattintva rögzítse őket. A <strong>„Teljes tulajdonságlista keresése”</strong> részben a további kifejezések is kereshetők; ha egyik sem megfelelő, használhatja az <strong>„Egyéb tulajdonság”</strong> mezőt. A <strong>„Megfelelő”</strong> csak <strong>5 pontos</strong> értékelésnél jelölhető. <strong>1–4 pontnál hibajellemzőt válasszon.</strong> Az ételszintű értékelés alatt az automatikusan ajánlott komponensek listája kézzel javítható; minden megtartott komponens összminősítést kap. A JAR-jellemzőket Ön választja ki, az intenzitás kizárólag az édes, sós, savanyú és keserű alapízekre vonatkozik.</div>
               <div id="soupSensory"></div>
 
               <div class="photo-card">
@@ -282,7 +284,7 @@
             <div class="card">
               <div class="section-kicker">MÁSODIK FOGÁS</div>
               <h2>Érzékszervi minősítés</h2>
-              <div class="sensory-instruction"><strong>Érzékszervi minősítés – CATA:</strong> Először adja meg az 1–5 pontszámot, majd <strong>először a listából válassza ki</strong> az összes, ételre jellemző tulajdonságot, és mindegyiket a <strong>„Hozzáad”</strong> gombbal rögzítse. Ha a szükséges jellemző nincs a listában, csak ezután használja az <strong>„Egyéb tulajdonság”</strong> lehetőséget, majd azt is adja hozzá. A <strong>„Megfelelő”</strong> jellemző kizárólag <strong>5 pontos</strong> értékelésnél választható. <strong>1–4 pont esetén csak kedvezőtlen / hibajellemző tulajdonságokat jelöljön.</strong></div>
+              <div class="sensory-instruction"><strong>Érzékszervi minősítés – CATA, komponensek, JAR és alapízek:</strong> Az ételhez ajánlott tulajdonságokat az alkalmazás előre megjeleníti. Az ételcsoportokat a fenti panelen ellenőrizheti és szükség esetén módosíthatja. Először adja meg az <strong>1–5 pontszámot</strong>, majd az ajánlott jellemzőkre kattintva rögzítse őket. A <strong>„Teljes tulajdonságlista keresése”</strong> részben a további kifejezések is kereshetők; ha egyik sem megfelelő, használhatja az <strong>„Egyéb tulajdonság”</strong> mezőt. A <strong>„Megfelelő”</strong> csak <strong>5 pontos</strong> értékelésnél jelölhető. <strong>1–4 pontnál hibajellemzőt válasszon.</strong> Az ételszintű értékelés alatt az automatikusan ajánlott komponensek listája kézzel javítható; minden megtartott komponens összminősítést kap. A JAR-jellemzőket Ön választja ki, az intenzitás kizárólag az édes, sós, savanyú és keserű alapízekre vonatkozik.</div>
               <div id="mainSensory"></div>
 
               <div class="photo-card">
@@ -361,6 +363,7 @@
             </select>
           </label>
           <div id="exportCount" class="info-box">0 exportálható rekord</div>
+          <div class="note"><strong>ZeroWaste Entry 5.0:</strong> A ZIP-export a korábbi esemény- és médiatáblák mellett külön fájlban tartalmazza a komponensszintű pontokat/CATA-jellemzőket és a JAR/alapíz-intenzitásértékeket. A külön CSV/XLSX gomb egyelőre csak a korábbi, ételszintű táblát exportálja.</div>
           <div class="button-stack">
             <button id="exportZipBtn" class="primary-btn" type="button">ZIP adatok letöltése és küldés az élelmezésvezetőnek</button>
             <button id="exportXlsxBtn" class="secondary-btn" type="button">XLSX adatok letöltése</button>
